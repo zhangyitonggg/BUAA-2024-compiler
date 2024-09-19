@@ -1,0 +1,10 @@
+22373337
+3337 is zyt
+i = 4
+heihei, z
+a = 1, ch = 2,sum= 51
+ans1 = 113
+ans2 = 8235
+ans3 = 9153
+ans4 = 1
+1,count = 38

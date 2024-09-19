@@ -1,0 +1,27 @@
+int getchar() {
+    char c;
+    scanf("%c", &c);
+    return (int)c;
+}
+
+int getint() {
+    int t;
+    scanf("%d", &t);
+    while(getchar() != '\n');
+    return t;
+}
+
+int main() {
+    // int a[2];
+    printf("22373337\n");
+    printf("2\n");
+    printf("3\n");
+    printf("4\n");
+    printf("5\n");
+    printf("6\n");
+    printf("7\n");
+    printf("8\n");
+    printf("9\n");
+    printf("10\n");
+    return 0;
+}
