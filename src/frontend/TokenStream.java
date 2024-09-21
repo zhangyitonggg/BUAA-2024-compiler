@@ -14,4 +14,13 @@ public class TokenStream {
         p++;
         return tokens.get(p);
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Token token : tokens) {
+            sb.append(token.toString());
+        }
+        return sb.toString();
+    }
 }

@@ -4,9 +4,11 @@ public enum TokenType {
     IDENFR,     // Ident            **
     INTCON,     // IntConst         **
     STRCON,     // FormatString     **
+    CHRCON,     // CharConst        **
     MAINTK,     // main
     CONSTTK,    // const
     INTTK,      // int
+    CHARTK,     // char
     BREAKTK,    // break
     CONTINUETK, // continue
     IFTK,       // if
@@ -16,6 +18,7 @@ public enum TokenType {
     OR,         // ||
     FORTK,      // for
     GETINTTK,   // getint
+    GETCHARTK,  // getchar
     PRINTFTK,   // printf
     RETURNTK,   // return
     PLUS,       // +
