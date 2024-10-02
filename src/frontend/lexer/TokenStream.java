@@ -4,15 +4,26 @@ import java.util.ArrayList;
 
 public class TokenStream {
     private final ArrayList<Token> tokens = new ArrayList<>();
-    private int p = -1;
+    private int p = 0;
     
     public void addToken(Token token) {
         this.tokens.add(token);
     }
     
     public Token next() {
-        p++;
+        return tokens.get(p++);
+    }
+    
+    public Token peek() {
         return tokens.get(p);
+    }
+    
+    public void setPos(int pos) {
+        p = pos;
+    }
+    
+    public int getPos() {
+        return p;
     }
     
     @Override

@@ -1,4 +1,5 @@
 import Utils.ErrorLog;
+import Utils.Printer;
 import frontend.lexer.Lexer;
 import frontend.lexer.TokenStream;
 
@@ -8,28 +9,21 @@ import java.io.IOException;
 
 public class Compiler {
     private final static String inputFileName = "testfile.txt";
-    private final static String outputFileName = "lexer.txt";
-    private final static String errorFileName = "error.txt";
     
     public static void main(String[] args) throws IOException {
+        // 词法分析
         File inputFile = new File(inputFileName);
         Lexer lexer = Lexer.getInstance(inputFile);
         TokenStream tokenStream = lexer.lex();
-        String output = tokenStream.toString();
+        Printer.print2lexer(tokenStream.toString());
         
-        try (FileWriter writer = new FileWriter(outputFileName)) {
-            writer.write(output);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // System.out.println(output);
-        // System.out.println("------------------------------");
+        // 语法分析
+        
+        
+        // 输出错误
         if (ErrorLog.getInstance().getErrorNum() != 0) {
-            try (FileWriter writer = new FileWriter(errorFileName)) {
-                writer.write(ErrorLog.getInstance().toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Printer.print2error(ErrorLog.getInstance().toString());
+            return;
         }
     }
 }

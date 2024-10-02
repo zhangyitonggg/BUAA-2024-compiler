@@ -99,6 +99,7 @@ public class Lexer {
             } else {
                 ErrorLog.getInstance().addError(new Error(line, 'a'));
                 reader.unread(ch);
+                sb.append('&');
             }
             return new Token(TokenType.AND, sb.toString(), line);
         } else if (ch == '|') {
