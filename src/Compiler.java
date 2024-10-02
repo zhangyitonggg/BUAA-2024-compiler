@@ -1,6 +1,6 @@
 import Utils.ErrorLog;
-import frontend.Lexer;
-import frontend.TokenStream;
+import frontend.lexer.Lexer;
+import frontend.lexer.TokenStream;
 
 import java.io.File;
 import java.io.FileWriter;

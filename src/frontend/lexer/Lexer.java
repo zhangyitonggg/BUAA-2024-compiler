@@ -1,4 +1,4 @@
-package frontend;
+package frontend.lexer;
 import Utils.Error;
 import Utils.ErrorLog;
 

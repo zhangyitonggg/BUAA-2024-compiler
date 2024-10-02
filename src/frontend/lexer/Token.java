@@ -1,4 +1,4 @@
-package frontend;
+package frontend.lexer;
 
 public class Token {
     private TokenType type;

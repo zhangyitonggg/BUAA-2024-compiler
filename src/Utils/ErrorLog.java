@@ -1,8 +1,5 @@
 package Utils;
 
-import frontend.Lexer;
-import frontend.Token;
-
 import java.util.ArrayList;
 
 public class ErrorLog {
