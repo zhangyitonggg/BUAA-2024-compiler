@@ -724,7 +724,6 @@ public class Parser {
                 ErrorLog.getInstance().addError(error);
             }
         }
-        
     }
     
     private void tryAddError(Error error) {
