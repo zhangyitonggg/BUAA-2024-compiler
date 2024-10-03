@@ -13,11 +13,7 @@ public class LVal {
         this.ident = ident;
         this.exp = exp;
     }
-    
-    public LVal(Token ident) {
-        this.ident = ident;
-        this.exp = null;
-    }
+
     
     @Override
     public String toString() {

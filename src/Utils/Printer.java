@@ -30,8 +30,8 @@ public class Printer {
 
     public static String ST(TokenType tokenType) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ");
         sb.append(tokenType.toString());
+        sb.append(" ");
         switch (tokenType){
             case MAINTK -> sb.append("main");
             case CONSTTK -> sb.append("const");

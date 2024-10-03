@@ -1,5 +1,7 @@
 package frontend.lexer;
 
+import java.util.Objects;
+
 public class Token {
     private TokenType type;
     private String value;
@@ -29,6 +31,10 @@ public class Token {
     
     public int getLine() {
         return this.line;
+    }
+    
+    public boolean is(TokenType type) {
+        return this.type == type;
     }
     
     @Override

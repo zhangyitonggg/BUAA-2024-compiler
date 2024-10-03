@@ -42,4 +42,5 @@ public enum TokenType {
     RBRACK,     // ]
     LBRACE,     // {
     RBRACE,     // }
+    EOF,        // end
 }

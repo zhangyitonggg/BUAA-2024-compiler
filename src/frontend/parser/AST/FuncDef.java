@@ -17,14 +17,7 @@ public class FuncDef {
         this.funcFParams = funcFParams;
         this.block = block;
     }
-    
-    public FuncDef(FuncType funcType, Token ident, Block block) {
-        this.funcType = funcType;
-        this.ident = ident;
-        this.funcFParams = null;
-        this.block = block;
-    }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -31,6 +31,7 @@ public class ConstDecl implements Decl, BlockItem {
                 flag = true;
             }
         }
+        sb.append(Printer.ST(TokenType.SEMICN));
         sb.append("<ConstDecl>\n");
         return sb.toString();
     }

@@ -4,6 +4,7 @@ import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.ConstExp;
+import frontend.parser.AST.SConstInitVal.ConstInitVal;
 
 // 常量定义 ConstDef → Ident [ '[' ConstExp ']' ] '=' ConstInitVal
 public class ConstDef {
@@ -34,7 +35,7 @@ public class ConstDef {
         }
         sb.append(Printer.ST(TokenType.ASSIGN));
         sb.append(constInitVal.toString());
-        sb.append("ConstDef\n");
+        sb.append("<ConstDef>\n");
         return sb.toString();
     }
 }

@@ -4,6 +4,7 @@ import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.ConstExp;
+import frontend.parser.AST.SInitVal.InitVal;
 
 // 变量定义 VarDef → Ident [ '[' ConstExp ']' ] | Ident [ '[' ConstExp ']' ] '=' InitVal
 public class VarDef {
@@ -15,24 +16,6 @@ public class VarDef {
         this.ident = ident;
         this.constExp = constExp;
         this.initVal = initVal;
-    }
-    
-    public VarDef(Token ident, ConstExp constExp) {
-        this.ident = ident;
-        this.constExp = constExp;
-        this.initVal = null;
-    }
-    
-    public VarDef(Token ident, InitVal initVal) {
-        this.ident = ident;
-        this.constExp = null;
-        this.initVal = initVal;
-    }
-    
-    public VarDef(Token ident) {
-        this.ident = ident;
-        this.constExp = null;
-        this.initVal = null;
     }
     
     @Override

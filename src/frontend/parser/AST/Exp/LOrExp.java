@@ -5,7 +5,7 @@ import frontend.lexer.Token;
 import java.util.ArrayList;
 
 // 逻辑或表达式 LOrExp → LAndExp | LOrExp '||' LAndExp
-// 改写为： LOrExp → LAndExp {&& LAndExp}
+// 改写为： LOrExp → LAndExp {|| LAndExp}
 public class LOrExp {
     private ArrayList<Object> nodes;
     

@@ -16,17 +16,13 @@ public class PrintfSubStmt implements Stmt, BlockItem {
         this.stringConst = stringConst;
         this.exps = exps;
     }
-    
-    public PrintfSubStmt(Token stringConst) {
-        this.stringConst = stringConst;
-        this.exps = new ArrayList<>();
-    }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Printer.ST(TokenType.PRINTFTK));
         sb.append(Printer.ST(TokenType.LPARENT));
+        sb.append(stringConst.toString());
         for(Exp exp : exps) {
             sb.append(Printer.ST(TokenType.COMMA));
             sb.append(exp.toString());
