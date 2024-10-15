@@ -5,10 +5,11 @@ import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.BlockItem;
 import frontend.parser.AST.Exp.Exp;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
-public class PrintfSubStmt implements Stmt, BlockItem {
+public class PrintfSubStmt implements Stmt, BlockItem, AnyNode {
     private Token stringConst;
     private ArrayList<Exp> exps; // 不能为null，但可以空
     

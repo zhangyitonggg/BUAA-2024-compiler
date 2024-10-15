@@ -3,9 +3,10 @@ package frontend.parser.AST.Exp;
 import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 // 左值表达式 LVal → Ident ['[' Exp ']']
-public class LVal {
+public class LVal implements AnyNode {
     private Token ident;
     private Exp exp; // 可能为null
     

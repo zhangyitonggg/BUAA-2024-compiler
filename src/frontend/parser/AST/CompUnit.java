@@ -1,9 +1,11 @@
 package frontend.parser.AST;
 
+import frontend.parser.AnyNode;
+
 import java.util.ArrayList;
 
 // 编译单元 CompUnit → {Decl} {FuncDef} MainFuncDef
-public class CompUnit {
+public class CompUnit implements AnyNode {
     private ArrayList<Decl> decls;
     private ArrayList<FuncDef> funcDefs;
     private MainFuncDef mainFuncDef;
@@ -12,6 +14,18 @@ public class CompUnit {
         this.decls  = decls;
         this.funcDefs = funcDefs;
         this.mainFuncDef = mainFuncDef;
+    }
+    
+    public ArrayList<Decl> getDecls() {
+        return decls;
+    }
+    
+    public ArrayList<FuncDef> getFuncDefs() {
+        return funcDefs;
+    }
+    
+    public MainFuncDef getMainFuncDef() {
+        return mainFuncDef;
     }
     
     @Override

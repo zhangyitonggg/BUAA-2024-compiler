@@ -1,9 +1,10 @@
 package frontend.parser.AST;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 // 函数类型 FuncType → 'void' | 'int' | 'char'
-public class FuncType {
+public class FuncType implements AnyNode {
     Token token;
     
     public FuncType(Token token) {

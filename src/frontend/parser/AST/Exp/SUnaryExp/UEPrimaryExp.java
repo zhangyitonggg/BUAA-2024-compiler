@@ -1,8 +1,9 @@
 package frontend.parser.AST.Exp.SUnaryExp;
 
 import frontend.parser.AST.Exp.SPrimaryExp.PrimaryExp;
+import frontend.parser.AnyNode;
 
-public class UEPrimaryExp implements UnaryExp {
+public class UEPrimaryExp implements UnaryExp, AnyNode {
     private PrimaryExp primaryExp;
     
     public UEPrimaryExp(PrimaryExp primaryExp) {

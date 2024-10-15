@@ -3,10 +3,11 @@ package frontend.parser.AST.SInitVal;
 import Utils.Printer;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.Exp;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
-public class IVExps implements InitVal {
+public class IVExps implements InitVal, AnyNode {
     private ArrayList<Exp> exps;
     
     public IVExps(ArrayList<Exp> exps) {

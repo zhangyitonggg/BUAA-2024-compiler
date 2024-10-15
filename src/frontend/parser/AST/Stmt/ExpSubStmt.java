@@ -4,8 +4,9 @@ import Utils.Printer;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.BlockItem;
 import frontend.parser.AST.Exp.Exp;
+import frontend.parser.AnyNode;
 
-public class ExpSubStmt implements Stmt, BlockItem {
+public class ExpSubStmt implements Stmt, BlockItem, AnyNode {
     private Exp exp; // 可能为null
     
     public ExpSubStmt(Exp exp) {

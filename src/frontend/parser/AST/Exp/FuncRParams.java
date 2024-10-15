@@ -2,10 +2,11 @@ package frontend.parser.AST.Exp;
 
 import Utils.Printer;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
-public class FuncRParams {
+public class FuncRParams implements AnyNode {
     private ArrayList<Exp> exps;
     
     public FuncRParams(ArrayList<Exp> exps) {

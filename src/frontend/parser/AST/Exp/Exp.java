@@ -1,7 +1,9 @@
 package frontend.parser.AST.Exp;
 
+import frontend.parser.AnyNode;
+
 // 表达式 Exp → AddExp
-public class Exp {
+public class Exp implements AnyNode {
     private AddExp addExp;
     
     public Exp(AddExp addExp) {

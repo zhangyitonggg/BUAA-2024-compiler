@@ -1,8 +1,9 @@
 package frontend.parser.AST.SConstInitVal;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
-public class CIVStringConst implements ConstInitVal {
+public class CIVStringConst implements ConstInitVal, AnyNode {
     Token stringConst;
     
     public CIVStringConst(Token stringConst) {

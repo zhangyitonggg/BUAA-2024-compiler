@@ -6,7 +6,6 @@ import frontend.parser.AST.CompUnit;
 import frontend.parser.Parser;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class Compiler {
@@ -20,6 +19,8 @@ public class Compiler {
         // 语法分析
         CompUnit compUnit = Parser.getInstance(tokenStream).parse();
         Printer.print2parser(compUnit.toString());
+        // 语义分析
+        TableStack.analyse(compUnit);
         // 输出错误
         if (ErrorLog.getInstance().getErrorNum() != 0) {
             System.out.println("error");

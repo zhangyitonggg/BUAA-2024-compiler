@@ -3,9 +3,10 @@ package frontend.parser.AST;
 import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 // 函数形参 FuncFParam → BType Ident ['[' ']']
-public class FuncFParam {
+public class FuncFParam implements AnyNode {
     private Token bType;
     private Token ident;
     private boolean isArray;

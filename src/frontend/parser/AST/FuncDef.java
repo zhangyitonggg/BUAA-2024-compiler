@@ -3,9 +3,10 @@ package frontend.parser.AST;
 import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 // 函数定义 FuncDef → FuncType Ident '(' [FuncFParams] ')' Block
-public class FuncDef {
+public class FuncDef implements AnyNode {
     private FuncType funcType;
     private Token ident;
     private FuncFParams funcFParams;

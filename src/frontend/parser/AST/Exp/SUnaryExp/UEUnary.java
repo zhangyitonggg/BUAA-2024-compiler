@@ -1,6 +1,8 @@
 package frontend.parser.AST.Exp.SUnaryExp;
 
-public class UEUnary implements UnaryExp{
+import frontend.parser.AnyNode;
+
+public class UEUnary implements UnaryExp, AnyNode {
     private UnaryOp unaryOp;
     private UnaryExp unaryExp;
     

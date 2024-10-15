@@ -1,12 +1,13 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 相等性表达式 EqExp → RelExp | EqExp ('==' | '!=') RelExp
 // 改写为： EqExp → RelExp {('==' | '!=') RelExp}
-public class EqExp {
+public class EqExp implements AnyNode {
     private ArrayList<Object> nodes;
     
     public EqExp(ArrayList<Object> nodes) {

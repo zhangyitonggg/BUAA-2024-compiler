@@ -1,8 +1,9 @@
 package frontend.parser.AST.Exp.SPrimaryExp;
 
 import frontend.parser.AST.Exp.LVal;
+import frontend.parser.AnyNode;
 
-public class PELVal implements PrimaryExp {
+public class PELVal implements PrimaryExp, AnyNode {
     private LVal lVal;
     
     public PELVal(LVal lVal) {

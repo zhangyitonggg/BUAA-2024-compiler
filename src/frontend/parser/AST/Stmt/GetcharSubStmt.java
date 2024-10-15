@@ -4,8 +4,9 @@ import Utils.Printer;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.BlockItem;
 import frontend.parser.AST.Exp.LVal;
+import frontend.parser.AnyNode;
 
-public class GetcharSubStmt implements Stmt, BlockItem {
+public class GetcharSubStmt implements Stmt, BlockItem, AnyNode {
     private LVal lVal;
     
     public GetcharSubStmt(LVal lVal){

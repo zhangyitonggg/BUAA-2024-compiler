@@ -3,11 +3,12 @@ package frontend.parser.AST;
 import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 变量声明 VarDecl → BType VarDef { ',' VarDef } ';'
-public class VarDecl implements Decl, BlockItem {
+public class VarDecl implements Decl, BlockItem, AnyNode {
     private Token bType;
     private ArrayList<VarDef> varDefs;
     

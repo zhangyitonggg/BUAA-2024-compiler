@@ -4,8 +4,9 @@ import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.FuncRParams;
+import frontend.parser.AnyNode;
 
-public class UEFunc implements UnaryExp{
+public class UEFunc implements UnaryExp, AnyNode {
     private Token ident;
     private FuncRParams funcRParams; // 可能为null
     

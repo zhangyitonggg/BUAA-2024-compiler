@@ -4,9 +4,10 @@ import Utils.Printer;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.Exp;
 import frontend.parser.AST.Exp.LVal;
+import frontend.parser.AnyNode;
 
 // 语句 ForStmt → LVal '=' Exp
-public class ForStmt {
+public class ForStmt implements AnyNode {
     private LVal lVal;
     private Exp exp;
     

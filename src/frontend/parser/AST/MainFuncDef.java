@@ -2,9 +2,10 @@ package frontend.parser.AST;
 
 import Utils.Printer;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 // 主函数定义 MainFuncDef → 'int' 'main' '(' ')' Block
-public class MainFuncDef {
+public class MainFuncDef implements AnyNode {
     private Block block;
     
     public MainFuncDef(Block block) {

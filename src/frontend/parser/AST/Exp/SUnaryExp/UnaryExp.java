@@ -5,7 +5,8 @@ import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.FuncRParams;
 import frontend.parser.AST.Exp.SPrimaryExp.PrimaryExp;
+import frontend.parser.AnyNode;
 
 // 一元表达式 UnaryExp → PrimaryExp | Ident '(' [FuncRParams] ')' | UnaryOp UnaryExp
-public interface UnaryExp {
+public interface UnaryExp extends AnyNode {
 }

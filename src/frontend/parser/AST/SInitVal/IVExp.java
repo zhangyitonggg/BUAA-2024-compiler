@@ -1,8 +1,9 @@
 package frontend.parser.AST.SInitVal;
 
 import frontend.parser.AST.Exp.Exp;
+import frontend.parser.AnyNode;
 
-public class IVExp implements InitVal {
+public class IVExp implements InitVal, AnyNode {
     private Exp exp;
     
     public IVExp(Exp exp) {

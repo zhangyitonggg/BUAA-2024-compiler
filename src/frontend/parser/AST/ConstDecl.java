@@ -3,11 +3,12 @@ package frontend.parser.AST;
 import Utils.Printer;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 常量声明 ConstDecl → 'const' BType ConstDef { ',' ConstDef } ';'
-public class ConstDecl implements Decl, BlockItem {
+public class ConstDecl implements Decl, BlockItem, AnyNode {
     private Token bType; // int or char
     private ArrayList<ConstDef> constDefs;
     

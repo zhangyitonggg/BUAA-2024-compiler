@@ -1,12 +1,13 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 逻辑或表达式 LOrExp → LAndExp | LOrExp '||' LAndExp
 // 改写为： LOrExp → LAndExp {|| LAndExp}
-public class LOrExp {
+public class LOrExp implements AnyNode {
     private ArrayList<Object> nodes;
     
     public LOrExp(ArrayList<Object> nodes) {

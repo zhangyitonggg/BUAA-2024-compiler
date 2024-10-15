@@ -5,8 +5,9 @@ import frontend.lexer.TokenType;
 import frontend.parser.AST.BlockItem;
 import frontend.parser.AST.Exp.Exp;
 import frontend.parser.AST.Exp.LVal;
+import frontend.parser.AnyNode;
 
-public class AssignSubStmt implements Stmt, BlockItem {
+public class AssignSubStmt implements Stmt, BlockItem, AnyNode {
     private LVal lVal;
     private Exp exp;
     

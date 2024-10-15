@@ -1,12 +1,13 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 逻辑与表达式 LAndExp → EqExp | LAndExp '&&' EqExp
 // 改写为： LAndExp → EqExp {&& EqExp}
-public class LAndExp {
+public class LAndExp implements AnyNode {
     private ArrayList<Object> nodes;
     
     public LAndExp(ArrayList<Object> nodes) {

@@ -1,9 +1,10 @@
 package frontend.parser.AST.Exp.SUnaryExp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 // 单目运算符 UnaryOp → '+' | '−' | '!'   注：'!'仅出现在条件表达式中
-public class UnaryOp {
+public class UnaryOp implements AnyNode {
     private Token op;
     
     public UnaryOp(Token op) {

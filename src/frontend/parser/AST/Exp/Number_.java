@@ -1,9 +1,10 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 // 数值 Number → IntConst
-public class Number_ {
+public class Number_ implements AnyNode {
     private Token intConst;
     
     public Number_(Token intConst) {

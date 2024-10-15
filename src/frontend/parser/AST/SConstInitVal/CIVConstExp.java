@@ -1,8 +1,9 @@
 package frontend.parser.AST.SConstInitVal;
 
 import frontend.parser.AST.Exp.ConstExp;
+import frontend.parser.AnyNode;
 
-public class CIVConstExp implements ConstInitVal {
+public class CIVConstExp implements ConstInitVal, AnyNode {
     private ConstExp constExp;
     
     public CIVConstExp(ConstExp constExp) {

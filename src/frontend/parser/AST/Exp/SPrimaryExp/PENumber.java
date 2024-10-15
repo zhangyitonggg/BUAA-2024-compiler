@@ -1,8 +1,9 @@
 package frontend.parser.AST.Exp.SPrimaryExp;
 
 import frontend.parser.AST.Exp.Number_;
+import frontend.parser.AnyNode;
 
-public class PENumber implements PrimaryExp {
+public class PENumber implements PrimaryExp, AnyNode {
     private Number_ number;
     
     public PENumber(Number_ number) {

@@ -2,11 +2,12 @@ package frontend.parser.AST;
 
 import Utils.Printer;
 import frontend.lexer.TokenType;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 函数形参表 FuncFParams → FuncFParam { ',' FuncFParam }
-public class FuncFParams {
+public class FuncFParams implements AnyNode {
     private ArrayList<FuncFParam> funcFParams;
     
     public FuncFParams(ArrayList<FuncFParam> funcFParams) {

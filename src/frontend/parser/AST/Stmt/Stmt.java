@@ -1,6 +1,7 @@
 package frontend.parser.AST.Stmt;
 
 import frontend.parser.AST.BlockItem;
+import frontend.parser.AnyNode;
 
 
 /*
@@ -17,5 +18,5 @@ import frontend.parser.AST.BlockItem;
     | LVal '=' 'getchar''('')'';'
     | 'printf''('StringConst {','Exp}')'';' // 1.有Exp 2.无Exp
  */
-public interface Stmt {
+public interface Stmt extends AnyNode {
 }

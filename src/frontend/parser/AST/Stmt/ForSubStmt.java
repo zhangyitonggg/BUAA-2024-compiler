@@ -5,8 +5,9 @@ import frontend.lexer.TokenType;
 import frontend.parser.AST.BlockItem;
 import frontend.parser.AST.Exp.Cond;
 import frontend.parser.AST.ForStmt;
+import frontend.parser.AnyNode;
 
-public class ForSubStmt implements Stmt, BlockItem {
+public class ForSubStmt implements Stmt, BlockItem, AnyNode {
     private ForStmt lForStmt;
     private Cond cond;
     private ForStmt rForStmt;

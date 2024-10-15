@@ -1,7 +1,9 @@
 package frontend.parser.AST.Exp;
 
+import frontend.parser.AnyNode;
+
 // 条件表达式 Cond → LOrExp
-public class Cond {
+public class Cond implements AnyNode {
     private LOrExp lOrExp;
     
     public Cond(LOrExp lOrExp) {

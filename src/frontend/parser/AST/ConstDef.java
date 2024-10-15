@@ -5,9 +5,10 @@ import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.ConstExp;
 import frontend.parser.AST.SConstInitVal.ConstInitVal;
+import frontend.parser.AnyNode;
 
 // 常量定义 ConstDef → Ident [ '[' ConstExp ']' ] '=' ConstInitVal
-public class ConstDef {
+public class ConstDef implements AnyNode {
     private Token ident;
     private ConstExp constExp;
     private ConstInitVal constInitVal;

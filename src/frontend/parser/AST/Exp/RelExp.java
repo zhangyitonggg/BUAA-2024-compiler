@@ -1,12 +1,13 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AnyNode;
 
 import java.util.ArrayList;
 
 // 关系表达式 RelExp → AddExp | RelExp ('<' | '>' | '<=' | '>=') AddExp
 // 改写为： RelExp → AddExp {('<' | '>' | '<=' | '>=') AddExp}
-public class RelExp {
+public class RelExp implements AnyNode {
     private ArrayList<Object> nodes;
     
     public RelExp(ArrayList<Object> nodes) {

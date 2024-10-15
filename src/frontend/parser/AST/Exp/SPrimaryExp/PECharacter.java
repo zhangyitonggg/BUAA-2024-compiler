@@ -1,8 +1,9 @@
 package frontend.parser.AST.Exp.SPrimaryExp;
 
 import frontend.parser.AST.Exp.Character_;
+import frontend.parser.AnyNode;
 
-public class PECharacter implements PrimaryExp {
+public class PECharacter implements PrimaryExp, AnyNode {
     private Character_ character;
     
     public PECharacter(Character_ character) {
