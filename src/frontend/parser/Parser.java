@@ -583,7 +583,7 @@ public class Parser {
             t = ts.peek();
             // '+', '-', '!', ident, '(', int, char
             // 有点不严谨，但是参考往年处理方法感觉足够了
-            if (t.is(PLUS) || t.is(MINU) || t.is(NOT) || t.is(IDENFR) || t.is(INTCON) || t.is(CHRCON)) {
+            if (t.is(PLUS) || t.is(MINU) || t.is(NOT) || t.is(IDENFR) || t.is(INTCON) || t.is(CHRCON) || t.is(LPARENT)) {
                 funcRParams = parseFuncRParams();
             }
             checkParserError(RPARENT);
