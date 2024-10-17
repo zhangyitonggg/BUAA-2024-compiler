@@ -16,6 +16,14 @@ public class AssignSubStmt implements Stmt, BlockItem, AnyNode {
         this.exp = exp;
     }
     
+    public LVal getLVal() {
+        return this.lVal;
+    }
+    
+    public Exp getExp() {
+        return this.exp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -17,6 +17,14 @@ public class ConstDecl implements Decl, BlockItem, AnyNode {
         this.constDefs = constDefs;
     }
     
+    public Token getBType() {
+        return bType;
+    }
+    
+    public ArrayList<ConstDef> getConstDefs() {
+        return constDefs;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

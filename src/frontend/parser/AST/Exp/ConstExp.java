@@ -10,6 +10,10 @@ public class ConstExp implements AnyNode {
         this.addExp = addExp;
     }
     
+    public AddExp getAddExp() {
+        return addExp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

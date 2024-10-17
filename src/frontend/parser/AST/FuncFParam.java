@@ -17,6 +17,18 @@ public class FuncFParam implements AnyNode {
         this.isArray = isArray;
     }
     
+    public Token getBType() {
+        return bType;
+    }
+    
+    public Token getIdent() {
+        return ident;
+    }
+    
+    public boolean getIsArray() {
+        return isArray;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

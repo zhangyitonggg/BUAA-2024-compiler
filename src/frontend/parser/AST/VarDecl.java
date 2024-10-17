@@ -17,6 +17,14 @@ public class VarDecl implements Decl, BlockItem, AnyNode {
         this.varDefs = varDefs;
     }
     
+    public Token getBType() {
+        return bType;
+    }
+    
+    public ArrayList<VarDef> getVarDefs() {
+        return varDefs;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

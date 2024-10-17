@@ -14,6 +14,10 @@ public class CIVConstExps implements ConstInitVal, AnyNode {
         this.constExps = constExps;
     }
     
+    public ArrayList<ConstExp> getConstExps() {
+        return constExps;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

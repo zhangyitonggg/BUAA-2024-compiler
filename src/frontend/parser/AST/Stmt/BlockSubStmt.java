@@ -11,6 +11,10 @@ public class BlockSubStmt implements Stmt, BlockItem, AnyNode {
         this.block = block;
     }
     
+    public Block getBlock() {
+        return block;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

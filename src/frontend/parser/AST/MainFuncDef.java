@@ -12,6 +12,9 @@ public class MainFuncDef implements AnyNode {
         this.block = block;
     }
     
+    public Block getBlock() {
+        return this.block;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

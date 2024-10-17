@@ -11,6 +11,10 @@ public class FuncType implements AnyNode {
         this.token = token;
     }
     
+    public Token getToken() {
+        return token;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

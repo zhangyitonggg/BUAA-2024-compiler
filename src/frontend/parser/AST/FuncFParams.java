@@ -14,6 +14,10 @@ public class FuncFParams implements AnyNode {
         this.funcFParams = funcFParams;
     }
     
+    public ArrayList<FuncFParam> getFuncFParams() {
+        return funcFParams;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

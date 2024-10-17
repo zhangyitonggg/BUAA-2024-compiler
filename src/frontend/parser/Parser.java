@@ -248,8 +248,9 @@ public class Parser {
         while(!(ts.peek().is(RBRACE))) {
             blockItems.add(parseBlockItem());
         }
+        Token t = ts.peek();
         ts.next();
-        return new Block(blockItems);
+        return new Block(blockItems, t);
     }
     
     /** 语句块项 BlockItem → Decl | Stmt **/
@@ -424,32 +425,32 @@ public class Parser {
     
     // 'break' ';'
     private BreakSubStmt parseBreakSubStmt() {
-        ts.next();
+        Token token = ts.next();
         checkParserError(SEMICN);
-        return new BreakSubStmt();
+        return new BreakSubStmt(token);
     }
     
     // 'continue' ';'
     private ContinueSubStmt parseContinueSubStmt() {
-        ts.next();
+        Token token = ts.next();
         checkParserError(SEMICN);
-        return new ContinueSubStmt();
+        return new ContinueSubStmt(token);
     }
     
     // 'return' [Exp] ';'
     private ReturnSubStmt parseReturnSubStmt() {
-        ts.next(); // 越过'return'
+        Token returnToken = ts.next(); // 越过'return'
         Token t = ts.peek();
         if (t.is(RBRACE)) { // Block结束
             checkParserError(SEMICN);
-            return new ReturnSubStmt(null);
+            return new ReturnSubStmt(null, returnToken);
         }
         // Block未结束，则下面一定是BlockItem
         if (t.is(CONSTTK) || t.is(INTTK) || t.is(CHARTK) ||
             t.is(LBRACE) || t.is(IFTK) || t.is(FORTK) || t.is(BREAKTK) || t.is(CONTINUETK) ||
             t.is(RETURNTK) || t.is(GETINTTK) || t.is(GETCHARTK) || t.is(PRINTFTK)) {
             checkParserError(SEMICN);
-            return new ReturnSubStmt(null);
+            return new ReturnSubStmt(null, returnToken);
         }
         // 下面只需要区分Exp和LVal
         /*
@@ -460,13 +461,13 @@ public class Parser {
          * */
         if (t.is(SEMICN)) {
             ts.next();
-            return new ReturnSubStmt(null);
+            return new ReturnSubStmt(null, returnToken);
         } else if (t.is(LPARENT) || t.is(INTTK) || t.is(CHARTK) ||
                    t.is(PLUS) || t.is(MINU) || t.is(NOT)) {
             // 一定是"[Exp];"
             Exp exp = parseExp();
             checkParserError(SEMICN);
-            return new ReturnSubStmt(exp);
+            return new ReturnSubStmt(exp, returnToken);
         } else {
             // 此时需要通过回溯特判
             int checkpoint = ts.getPos();
@@ -477,20 +478,20 @@ public class Parser {
                 // 此时一定不是"[Exp];",也就是缺少分号
                 ts.setPos(checkpoint);
                 checkParserError(SEMICN);
-                return new ReturnSubStmt(null);
+                return new ReturnSubStmt(null, returnToken);
             } else {
                 // 此时一定是"Exp;"
                 ts.setPos(checkpoint);
                 Exp exp = parseExp();
                 checkParserError(SEMICN);
-                return new ReturnSubStmt(exp);
+                return new ReturnSubStmt(exp, returnToken);
             }
         }
     }
   
     // 'printf''('StringConst {','Exp}')'';'
     private PrintfSubStmt parsePrintfSubStmt() {
-        ts.next(); // 越过'printf'
+        Token printfToken = ts.next(); // 越过'printf'
         ts.next(); // 越过'('
         Token stringConst = ts.next();
         ArrayList<Exp> exps = new ArrayList<>();
@@ -501,7 +502,7 @@ public class Parser {
         }
         checkParserError(RPARENT);
         checkParserError(SEMICN);
-        return new PrintfSubStmt(stringConst, exps);
+        return new PrintfSubStmt(printfToken, stringConst, exps);
     }
     
     /** 语句 ForStmt → LVal '=' Exp **/
@@ -583,7 +584,7 @@ public class Parser {
             t = ts.peek();
             // '+', '-', '!', ident, '(', int, char
             // 有点不严谨，但是参考往年处理方法感觉足够了
-            if (t.is(PLUS) || t.is(MINU) || t.is(NOT) || t.is(IDENFR) || t.is(INTCON) || t.is(CHRCON)) {
+            if (t.is(PLUS) || t.is(MINU) || t.is(NOT) || t.is(IDENFR) || t.is(INTCON) || t.is(CHRCON) || t.is(LPARENT)) {
                 funcRParams = parseFuncRParams();
             }
             checkParserError(RPARENT);

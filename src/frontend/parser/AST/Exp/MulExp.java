@@ -1,6 +1,7 @@
 package frontend.parser.AST.Exp;
 
 import frontend.lexer.Token;
+import frontend.parser.AST.Exp.SUnaryExp.UEPrimaryExp;
 import frontend.parser.AST.Exp.SUnaryExp.UnaryExp;
 import frontend.parser.AnyNode;
 
@@ -13,6 +14,10 @@ public class MulExp implements AnyNode {
     
     public MulExp(ArrayList<Object> nodes) {
         this.nodes = nodes;
+    }
+    
+    public ArrayList<Object> getNodes() {
+        return nodes;
     }
     
     @Override
@@ -29,5 +34,15 @@ public class MulExp implements AnyNode {
             sb.append("<MulExp>\n");
         }
         return sb.toString();
+    }
+    
+    public Token tryGetIdent() {
+        if (nodes.size() != 1) {
+            return null;
+        }
+        if (nodes.get(0) instanceof UEPrimaryExp) {
+            return ((UEPrimaryExp) nodes.get(0)).tryGetIdent();
+        }
+        return null;
     }
 }

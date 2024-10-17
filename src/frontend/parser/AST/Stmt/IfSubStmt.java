@@ -23,6 +23,18 @@ public class IfSubStmt implements Stmt, BlockItem, AnyNode {
         this.elStmt = null;
     }
     
+    public Cond getCond() {
+        return cond;
+    }
+    
+    public Stmt getIfStmt() {
+        return ifStmt;
+    }
+    
+    public Stmt getElStmt() {
+        return elStmt;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

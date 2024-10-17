@@ -18,7 +18,23 @@ public class FuncDef implements AnyNode {
         this.funcFParams = funcFParams;
         this.block = block;
     }
-
+    
+    public FuncType getFuncType() {
+        return funcType;
+    }
+    
+    public Token getIdent() {
+        return ident;
+    }
+    
+    public FuncFParams getFuncFParams() {
+        return funcFParams;
+    }
+    
+    public Block getBlock() {
+        return block;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

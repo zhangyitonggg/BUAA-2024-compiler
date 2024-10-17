@@ -10,14 +10,28 @@ import frontend.parser.AnyNode;
 import java.util.ArrayList;
 
 public class PrintfSubStmt implements Stmt, BlockItem, AnyNode {
+    private Token printfToken;
     private Token stringConst;
     private ArrayList<Exp> exps; // 不能为null，但可以空
     
-    public PrintfSubStmt(Token stringConst, ArrayList<Exp> exps) {
+    public PrintfSubStmt(Token printfToken, Token stringConst, ArrayList<Exp> exps) {
+        this.printfToken = printfToken;
         this.stringConst = stringConst;
         this.exps = exps;
     }
-
+    
+    public Token getPrintfToken() {
+        return printfToken;
+    }
+    
+    public Token getStringConst() {
+        return stringConst;
+    }
+    
+    public ArrayList<Exp> getExps() {
+        return exps;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

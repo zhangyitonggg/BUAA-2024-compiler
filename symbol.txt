@@ -1,0 +1,3 @@
+1 my_print VoidFunc
+2 param Int
+3 a Int

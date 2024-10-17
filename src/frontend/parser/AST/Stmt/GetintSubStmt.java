@@ -13,6 +13,10 @@ public class GetintSubStmt implements Stmt, BlockItem, AnyNode {
         this.lVal = lVal;
     }
     
+    public LVal getLVal() {
+        return lVal;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

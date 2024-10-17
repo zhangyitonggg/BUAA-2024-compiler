@@ -30,8 +30,13 @@ public class ErrorLog {
         // tm竟然需要按行数输出，浪费我一晚上生命。
         Collections.sort(errors, Comparator.comparingInt(Error::getLine));
         StringBuilder sb = new StringBuilder();
+        Error lastError = null;
         for (Error error : errors) {
-            sb.append(error.toString());
+            // 取消重复的
+            if (lastError == null || !lastError.equals(error)) {
+                sb.append(error.toString());
+                lastError = error;
+            }
         }
         return sb.toString();
     }

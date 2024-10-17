@@ -9,6 +9,7 @@ public class Printer {
     private final static String lexerFileName = "lexer.txt";
     private final static String errorFileName = "error.txt";
     private final static String parserFileName = "parser.txt";
+    private final static String symbolFileName = "symbol.txt";
     
     private static void print2file(String fileName, String output) {
         try (FileWriter writer = new FileWriter(fileName)) {
@@ -23,6 +24,10 @@ public class Printer {
     
     public static void print2parser(String output) {
         print2file(parserFileName, output);
+    }
+    
+    public static void print2symbol(String output) {
+        print2file(symbolFileName, output);
     }
     public static void print2error(String output) {
         print2file(errorFileName, output);

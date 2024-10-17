@@ -15,6 +15,14 @@ public class UEFunc implements UnaryExp, AnyNode {
         this.funcRParams = funcRParams;
     }
     
+    public Token getIdent() {
+        return ident;
+    }
+    
+    public FuncRParams getFuncRParams() {
+        return funcRParams;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

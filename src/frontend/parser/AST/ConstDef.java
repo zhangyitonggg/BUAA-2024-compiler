@@ -25,6 +25,18 @@ public class ConstDef implements AnyNode {
         this.constInitVal = constInitVal;
     }
     
+    public Token getIdent() {
+        return this.ident;
+    }
+    
+    public ConstExp getConstExp() {
+        return constExp;
+    }
+    
+    public ConstInitVal getConstInitVal() {
+        return constInitVal;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

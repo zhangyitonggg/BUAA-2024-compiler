@@ -10,6 +10,10 @@ public class IVExp implements InitVal, AnyNode {
         this.exp = exp;
     }
     
+    public Exp getExp() {
+        return exp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

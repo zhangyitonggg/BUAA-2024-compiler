@@ -13,8 +13,9 @@ public class SymbolTable {
     }
     
     public boolean has(Token ident) {
+        String index = ident.getValue();
         for (Symbol o : symbols) {
-            if (o.getName().equals(ident.toString())) {
+            if (o.getName().equals(index)) {
                 return true;
             }
         }

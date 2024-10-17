@@ -18,6 +18,15 @@ public class Error {
     }
     
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof Error) {
+            Error other = (Error) o;
+            return (this.line == other.getLine()) && (this.errorKey == other.getErrorKey());
+        }
+        return false;
+    }
+    
+    @Override
     public String toString() {
         return this.line + " " + errorKey + "\n";
     }

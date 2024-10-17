@@ -1,5 +1,7 @@
 import Utils.ErrorLog;
 import Utils.Printer;
+import frontend.checker.Checker;
+import frontend.checker.SymbolTable;
 import frontend.lexer.Lexer;
 import frontend.lexer.TokenStream;
 import frontend.parser.AST.CompUnit;
@@ -20,7 +22,8 @@ public class Compiler {
         CompUnit compUnit = Parser.getInstance(tokenStream).parse();
         Printer.print2parser(compUnit.toString());
         // 语义分析
-        TableStack.analyse(compUnit);
+        SymbolTable rootTable = Checker.getInstance().check(compUnit);
+        Printer.print2symbol(rootTable.toString());
         // 输出错误
         if (ErrorLog.getInstance().getErrorNum() != 0) {
             System.out.println("error");

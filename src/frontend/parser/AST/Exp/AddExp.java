@@ -14,6 +14,10 @@ public class AddExp implements AnyNode {
         this.nodes = nodes;
     }
     
+    public ArrayList<Object> getNodes() {
+        return nodes;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -28,5 +32,12 @@ public class AddExp implements AnyNode {
             sb.append("<AddExp>\n");
         }
         return sb.toString();
+    }
+    
+    public Token tryGetIdent() {
+        if (nodes.size() != 1) {
+            return null;
+        }
+        return ((MulExp) nodes.get(0)).tryGetIdent();
     }
 }

@@ -14,6 +14,10 @@ public class IVExps implements InitVal, AnyNode {
         this.exps = exps;
     }
     
+    public ArrayList<Exp> getExps() {
+        return exps;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -14,6 +14,10 @@ public class EqExp implements AnyNode {
         this.nodes = nodes;
     }
     
+    public ArrayList<Object> getNodes() {
+        return nodes;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

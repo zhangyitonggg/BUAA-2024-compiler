@@ -20,6 +20,22 @@ public class ForSubStmt implements Stmt, BlockItem, AnyNode {
         this.stmt = stmt;
     }
     
+    public ForStmt getLForStmt() {
+        return lForStmt;
+    }
+    
+    public Cond getCond() {
+        return cond;
+    }
+    
+    public ForStmt getRForStmt() {
+        return rForStmt;
+    }
+    
+    public Stmt getStmt() {
+        return stmt;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

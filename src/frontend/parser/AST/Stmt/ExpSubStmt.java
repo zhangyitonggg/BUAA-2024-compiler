@@ -13,6 +13,10 @@ public class ExpSubStmt implements Stmt, BlockItem, AnyNode {
         this.exp = exp;
     }
     
+    public Exp getExp() {
+        return exp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

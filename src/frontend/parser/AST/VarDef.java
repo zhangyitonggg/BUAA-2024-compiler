@@ -19,6 +19,18 @@ public class VarDef implements AnyNode {
         this.initVal = initVal;
     }
     
+    public Token getIdent() {
+        return ident;
+    }
+    
+    public ConstExp getConstExp() {
+        return constExp;
+    }
+    
+    public InitVal getInitVal() {
+        return initVal;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

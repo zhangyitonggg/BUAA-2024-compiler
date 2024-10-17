@@ -10,6 +10,10 @@ public class Cond implements AnyNode {
         this.lOrExp = lOrExp;
     }
     
+    public LOrExp getLOrExp() {
+        return lOrExp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

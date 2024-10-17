@@ -14,7 +14,14 @@ public class LVal implements AnyNode {
         this.ident = ident;
         this.exp = exp;
     }
-
+    
+    public Token getIdent() {
+        return ident;
+    }
+    
+    public Exp getExp() {
+        return exp;
+    }
     
     @Override
     public String toString() {
@@ -27,5 +34,13 @@ public class LVal implements AnyNode {
         }
         sb.append("<LVal>\n");
         return sb.toString();
+    }
+    
+    // exp不能有
+    public Token tryGetIdent() {
+        if (exp != null) {
+            return null;
+        }
+        return ident;
     }
 }

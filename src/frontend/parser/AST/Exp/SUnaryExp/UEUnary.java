@@ -11,6 +11,14 @@ public class UEUnary implements UnaryExp, AnyNode {
         this.unaryExp = unaryExp;
     }
     
+    public UnaryOp getUnaryOp() {
+        return unaryOp;
+    }
+    
+    public UnaryExp getUnaryExp() {
+        return unaryExp;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

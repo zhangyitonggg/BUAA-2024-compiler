@@ -10,6 +10,10 @@ public class CIVStringConst implements ConstInitVal, AnyNode {
         this.stringConst = stringConst;
     }
     
+    public Token getStringConst() {
+        return stringConst;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
