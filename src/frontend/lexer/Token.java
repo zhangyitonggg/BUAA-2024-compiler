@@ -7,7 +7,6 @@ public class Token {
     private String value;
     private int line;
     
-    // 对于 & 和 | 的情况，type 取 AND 和 OR，但是 value 取 & 和 |
     public Token(TokenType type, String value, int line) {
         this.type = type;
         this.value = value;

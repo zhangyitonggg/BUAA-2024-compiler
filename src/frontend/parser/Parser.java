@@ -279,8 +279,7 @@ public class Parser {
     public Stmt parseStmt() {
         if (ts.peek().is(LBRACE)) {
             return parseBlockSubStmt();
-        }
-        else if (ts.peek().is(IFTK)) {
+        } else if (ts.peek().is(IFTK)) {
             return parseIfSubStmt();
         } else if (ts.peek().is(FORTK)) {
             return parseForSubStmt();
