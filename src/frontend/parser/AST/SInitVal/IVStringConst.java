@@ -11,6 +11,9 @@ public class IVStringConst implements InitVal, AnyNode {
         this.stringConst = stringConst;
     }
     
+    public Token getStringConst() {
+        return this.stringConst;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

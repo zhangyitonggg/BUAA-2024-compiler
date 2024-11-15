@@ -6,7 +6,6 @@ import Utils.Error;
 import Utils.ErrorLog;
 import frontend.checker.symbol.FuncSymbol;
 import frontend.checker.symbol.Symbol;
-import frontend.checker.symbol.Type;
 import frontend.checker.symbol.VarSymbol;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
@@ -26,9 +25,6 @@ import frontend.parser.AST.SInitVal.IVExp;
 import frontend.parser.AST.SInitVal.IVExps;
 import frontend.parser.AST.SInitVal.InitVal;
 import frontend.parser.AST.Stmt.*;
-import frontend.parser.AnyNode;
-import frontend.parser.Parser;
-import frontend.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -148,7 +144,7 @@ public class Checker {
     private void checkVarDef(VarDef varDef, Token bType) {
         Token ident = varDef.getIdent();
         ConstExp constExp = varDef.getConstExp();
-        InitVal initVal = varDef.getInitVal();;
+        InitVal initVal = varDef.getInitVal(); // 可能为null
         
         if (curTable.has(ident)) {
             addError(ident, 'b');
@@ -160,7 +156,9 @@ public class Checker {
         if (constExp != null) {
             checkConstExp(constExp);
         }
-        checkInitVal(initVal);
+        if (initVal != null) {
+            checkInitVal(initVal);
+        }
     }
     
     /** 变量初值 InitVal → Exp | '{' [ Exp { ',' Exp } ] '}' | StringConst **/

@@ -10,6 +10,10 @@ public class PENumber implements PrimaryExp, AnyNode {
         this.number = number;
     }
     
+    public int getNumber() {
+        return number.getNumber();
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -1,3 +1,6 @@
-1 my_print VoidFunc
-2 param Int
-3 a Int
+1 a IntArray
+1 foo IntFunc
+2 x Int
+2 y IntArray
+3 c IntArray
+3 x Int

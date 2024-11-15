@@ -6,6 +6,8 @@ import frontend.lexer.Lexer;
 import frontend.lexer.TokenStream;
 import frontend.parser.AST.CompUnit;
 import frontend.parser.Parser;
+import llvm.Module;
+import llvm.Visitor;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,5 +32,8 @@ public class Compiler {
             Printer.print2error(ErrorLog.getInstance().toString());
             return;
         }
+        // 生成中间代码
+        Module module = Visitor.getInstance().visit(compUnit);
+        Printer.print2llvm(module.toString());
     }
 }

@@ -10,6 +10,10 @@ public class PECharacter implements PrimaryExp, AnyNode {
         this.character = character;
     }
     
+    public int getAscii() {
+        return character.getAscii();
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

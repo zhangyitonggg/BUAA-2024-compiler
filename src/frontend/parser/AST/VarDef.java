@@ -1,6 +1,7 @@
 package frontend.parser.AST;
 
 import Utils.Printer;
+import frontend.checker.symbol.Symbol;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AST.Exp.ConstExp;
@@ -30,6 +31,7 @@ public class VarDef implements AnyNode {
     public InitVal getInitVal() {
         return initVal;
     }
+    
     
     @Override
     public String toString() {

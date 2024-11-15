@@ -1,0 +1,65 @@
+package llvm.value.instr;
+
+import llvm.value.Value;
+import llvm.value.notInstr.Function;
+
+import java.util.ArrayList;
+
+/**
+ * 根据函数有无返回值分为两种情况:
+ * <result> = call [ret attrs] <ty> <name>(<...args>)
+ * call [ret attrs] <ty> <name>(<...args>)
+ */
+public class Call extends Instruction {
+    private final boolean hasReturnValue;
+    
+    /**
+     * 有返回值的情况
+     * @param nameCount
+     * @param function
+     * @param rParams
+     */
+    public Call(int nameCount, Function function, ArrayList<Value> rParams) {
+        super("%v" + nameCount, function.getReturnType());
+        addOperand(function);
+        if (!rParams.isEmpty()) {
+            for (Value rParam : rParams) {
+                addOperand(rParam);
+            }
+        }
+        hasReturnValue = true;
+    }
+    
+    public Call(Function function, ArrayList<Value> rParams) {
+        super(function.getReturnType());
+        addOperand(function);
+        if (!rParams.isEmpty()) {
+            for (Value rParam : rParams) {
+                addOperand(rParam);
+            }
+        }
+        hasReturnValue = false;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (hasReturnValue) {
+            sb.append(getName());
+            sb.append(" = ");
+        }
+        sb.append("call ");
+        Function function = (Function) getOperand(0);
+        sb.append(function.getReturnType()).append(" ").append(function.getName()).append("(");
+        ArrayList<Value> operands = getAllOperands();
+        for (int i = 1; i < operands.size(); i++) {
+            Value rParam = operands.get(i);
+            sb.append(rParam.getType()).append(' ').append(" ").append(rParam.getName());
+            if (i < operands.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append(")");
+        return sb.toString();
+    }
+}

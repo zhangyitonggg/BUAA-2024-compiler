@@ -1,6 +1,7 @@
 package frontend.parser.AST;
 
 import Utils.Printer;
+import frontend.checker.symbol.Symbol;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AnyNode;

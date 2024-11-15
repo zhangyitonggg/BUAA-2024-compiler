@@ -11,6 +11,10 @@ public class Number_ implements AnyNode {
         this.intConst = intConst;
     }
     
+    public int getNumber() {
+        return Integer.parseInt(intConst.getValue());
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

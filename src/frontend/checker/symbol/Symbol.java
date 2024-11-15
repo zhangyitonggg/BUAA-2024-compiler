@@ -1,12 +1,10 @@
 package frontend.checker.symbol;
 
 import frontend.lexer.Token;
-import frontend.lexer.TokenType;
-import frontend.parser.AnyNode;
 
 public class Symbol {
     protected String name;
-    protected Type type;
+    protected SymType type;
     
     public Symbol() {
     
@@ -20,7 +18,7 @@ public class Symbol {
         this.name = name.getValue();
     }
     
-    public void setType(Type type) {
+    public void setType(SymType type) {
         this.type = type;
     }
 }

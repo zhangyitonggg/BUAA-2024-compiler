@@ -1,9 +1,7 @@
 package frontend.checker.symbol;
 
-import frontend.checker.SymbolTable;
 import frontend.lexer.Token;
 import frontend.lexer.TokenType;
-import frontend.parser.AST.Exp.FuncRParams;
 import frontend.parser.AST.FuncFParam;
 import frontend.parser.AST.FuncFParams;
 import frontend.parser.AST.FuncType;
@@ -11,23 +9,18 @@ import frontend.parser.AST.FuncType;
 import java.util.ArrayList;
 
 public class FuncSymbol extends Symbol {
-    private ArrayList<Type> paramTypes;
-    
-//    public FuncSymbol(Token name, Type returnType, ArrayList<Type> paramTypes) {
-//        super(name, returnType);
-//        this.paramTypes = paramTypes;
-//    }
+    private ArrayList<SymType> paramTypes;
     
     public FuncSymbol(Token name, FuncType funcType, FuncFParams funcFParams) {
         super();
-        Type type;
+        SymType type;
         Token t = funcType.getToken();
         if (t.is(TokenType.INTTK)) {
-            type = Type.IT;
+            type = SymType.IT;
         } else if (t.is(TokenType.CHARTK)) {
-            type = Type.CT;
+            type = SymType.CT;
         } else {
-            type = Type.VT;
+            type = SymType.VT;
         }
         setName(name);
         setType(type);
@@ -38,15 +31,15 @@ public class FuncSymbol extends Symbol {
                 boolean isArray = funcFParam.getIsArray();
                 if (bType.is(TokenType.INTTK)) {
                     if (isArray) {
-                        paramTypes.add(Type.AIT);
+                        paramTypes.add(SymType.AIT);
                     } else {
-                        paramTypes.add(Type.IT);
+                        paramTypes.add(SymType.IT);
                     }
                 } else {
                     if (isArray) {
-                        paramTypes.add(Type.ACT);
+                        paramTypes.add(SymType.ACT);
                     } else {
-                        paramTypes.add(Type.CT);
+                        paramTypes.add(SymType.CT);
                     }
                 }
             }
@@ -58,11 +51,11 @@ public class FuncSymbol extends Symbol {
     }
     
     public boolean checkType(int index, boolean otherIsArray, boolean otherIsInt) {
-        Type myType = paramTypes.get(index);
+        SymType myType = paramTypes.get(index);
         if (otherIsArray) {
-            return (myType == Type.AIT && otherIsInt) || (myType == Type.ACT && !otherIsInt);
+            return (myType == SymType.AIT && otherIsInt) || (myType == SymType.ACT && !otherIsInt);
         } else {
-            return (myType == Type.IT) || (myType == Type.CT);
+            return (myType == SymType.IT) || (myType == SymType.CT);
         }
     }
     
@@ -70,9 +63,9 @@ public class FuncSymbol extends Symbol {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.name).append(" ");
-        if (this.type == Type.VT) {
+        if (this.type == SymType.VT) {
             sb.append("VoidFunc");
-        } else if (this.type == Type.CT) {
+        } else if (this.type == SymType.CT) {
             sb.append("CharFunc");
         } else {
             sb.append("IntFunc");

@@ -4,24 +4,28 @@ import frontend.lexer.Token;
 import frontend.lexer.TokenType;
 import frontend.parser.AnyNode;
 
+import java.util.ArrayList;
+
 public class VarSymbol extends Symbol {
     private boolean isConst;
     private boolean isGlobal;
+    private int elmNums;
+    private ArrayList<Integer> inits;
     
     public VarSymbol(Token name, Token bType, AnyNode anyNode, boolean isConst, boolean isGlobal) {
         super();
-        Type type;
+        SymType type;
         if (bType.is(TokenType.INTTK)) {
             if (anyNode != null) {
-                type = Type.AIT;
+                type = SymType.AIT;
             } else {
-                type = Type.IT;
+                type = SymType.IT;
             }
         } else {
             if (anyNode != null) {
-                type = Type.ACT;
+                type = SymType.ACT;
             } else {
-                type = Type.CT;
+                type = SymType.CT;
             }
         }
         this.setName(name);
@@ -33,18 +37,18 @@ public class VarSymbol extends Symbol {
     // FuncFParam
     public VarSymbol(Token name, Token bType, Boolean isArray) {
         super();
-        Type type;
+        SymType type;
         if (bType.is(TokenType.INTTK)) {
             if (isArray) {
-                type = Type.AIT;
+                type = SymType.AIT;
             } else {
-                type = Type.IT;
+                type = SymType.IT;
             }
         } else {
             if (isArray) {
-                type = Type.ACT;
+                type = SymType.ACT;
             } else {
-                type = Type.CT;
+                type = SymType.CT;
             }
         }
         this.setName(name);
@@ -62,13 +66,17 @@ public class VarSymbol extends Symbol {
     }
     
     public boolean isArray() {
-        return this.type == Type.AIT || this.type == Type.ACT;
+        return this.type == SymType.AIT || this.type == SymType.ACT;
     }
     
     public boolean isInt() {
-        return this.type == Type.IT || this.type == Type.AIT;
+        return this.type == SymType.IT || this.type == SymType.AIT;
     }
 
+    public void setInits(ArrayList<Integer> inits) {
+        this.inits = inits;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,12 +84,12 @@ public class VarSymbol extends Symbol {
         if (isConst) {
             sb.append("Const");
         }
-        if (this.type == Type.IT || this.type == Type.AIT) {
+        if (this.type == SymType.IT || this.type == SymType.AIT) {
             sb.append("Int");
         } else {
             sb.append("Char");
         }
-        if (this.type == Type.AIT || this.type == Type.ACT) {
+        if (this.type == SymType.AIT || this.type == SymType.ACT) {
             sb.append("Array");
         }
         sb.append("\n");

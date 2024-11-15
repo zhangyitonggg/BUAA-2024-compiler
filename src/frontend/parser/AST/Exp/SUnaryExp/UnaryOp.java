@@ -11,6 +11,10 @@ public class UnaryOp implements AnyNode {
         this.op = op;
     }
     
+    public Token getOp() {
+        return this.op;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
