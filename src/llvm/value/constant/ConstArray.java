@@ -19,8 +19,9 @@ public class ConstArray extends Constant {
         super(type);
         this.elements = elements;
         // ConstArray仅仅用于全局数组的初始化，elements长度可能小于数组长度，需要补0
-        int length = type.length;
-        for (int i = 0; i < length - elements.size(); i++) {
+        int needLength = type.length;
+        int nowLength = elements.size();
+        for (int i = 0; i < needLength - nowLength; i++) {
             this.elements.add(0);
         }
     }
@@ -32,8 +33,8 @@ public class ConstArray extends Constant {
     public ConstArray(ArrayIrTy type) {
         super(type);
         this.elements = new ArrayList<>();
-        int length = type.length;
-        for (int i = 0; i < length - elements.size(); i++) {
+        int needLength = type.length;
+        for (int i = 0; i < needLength; i++) {
             this.elements.add(0);
         }
     }

@@ -19,6 +19,6 @@ public class Trunc extends Instruction {
     @Override
     public String toString() {
         return this.getName() + " = trunc " + getOriValue().getType() + " " +
-                getOriValue().getType() + " to " + this.getType();
+                getOriValue().getName() + " to " + this.getType();
     }
 }

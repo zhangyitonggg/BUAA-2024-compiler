@@ -182,7 +182,7 @@ public class Visitor extends IrFactory {
                 // 处理可能存在的初始值
                 if (initVal != null) {
                     inits = visitInitVal(initVal, bType.is(TokenType.CHARTK), length);
-                    // getelementptr 得到一个int*的指针
+                    // getelementptr 得到一个int*/char*的指针
                     Getelementptr basePtr = makeGetelementptr(alloca);
                     Value init = inits.get(0);
                     // 这时候需要处理一下位数不匹配的问题
@@ -231,10 +231,23 @@ public class Visitor extends IrFactory {
                 }
             }
         } else {
-            String str = ((IVStringConst) initVal).getStringConst().getValue();
-            for (int i = 0; i < length; i++) {
-                char c = str.charAt(i);
-                ConstData constData = new ConstData(DataIrTy.I8, c);
+            ArrayList<Integer> tmps = ((IVStringConst) initVal).getAsciis();
+            for (int i = 0; i < tmps.size(); i++) {
+                ConstData constData;
+                if (isChar) {
+                    constData = new ConstData(DataIrTy.I8, tmps.get(i));
+                } else {
+                    constData = new ConstData(DataIrTy.I32, tmps.get(i));
+                }
+                inits.add(constData);
+            }
+            for (int i = 0; i < length - tmps.size(); i++) {
+                ConstData constData;
+                if (isChar) {
+                    constData = new ConstData(DataIrTy.I8, 0);
+                } else {
+                    constData = new ConstData(DataIrTy.I32, 0);
+                }
                 inits.add(constData);
             }
         }
@@ -322,10 +335,9 @@ public class Visitor extends IrFactory {
                 inits.add(visitConstExp(constExp));
             }
         } else {
-            String str = ((CIVStringConst) constInitVal).getStringConst().getValue();
-            for (int i = 0; i < str.length(); i++) {
-                char c = str.charAt(i);
-                inits.add((int) c);
+            ArrayList<Integer> tmps = ((CIVStringConst) constInitVal).getAsciis();
+            for (int i = 0; i < tmps.size(); i++) {
+                inits.add(tmps.get(i));
             }
         }
         return inits;
@@ -376,8 +388,8 @@ public class Visitor extends IrFactory {
     }
     protected void visitLastInstructionInFunction() {
         Instruction instr = curBb.getInstrAtEnd(); // 可能为null，那实际上就是整个函数一个指令都没有
-        if (instr instanceof Branch || instr instanceof Ret) {
-            // 这里没写Jump，是因为Jump是无符号扩展，一定无法到达Ret
+        if (!(instr instanceof Branch || instr instanceof Ret)) {
+            // 这里没写Jump，是因为Jump是无条件跳转，一定无法到达Ret
             makeRet(null); // 啥都不返回，因为只有无返回值函数才会调这个函数
         }
     }
@@ -497,7 +509,8 @@ public class Visitor extends IrFactory {
         Value vExp = visitExp(exp);
         
         // 这时候需要处理一下位数不匹配的问题
-        Instruction instruction = tryMakeResize(vExp, (DataIrTy) vLVal.getType());
+        Instruction instruction = tryMakeResize(vExp, (DataIrTy) ((PointerIrTy) vLVal.getType()).deRefIrTy);
+        
         if (instruction == null) {
             // 如果instruction为null，即无需resize，那接下来使用的就是init
             makeStore(vExp, vLVal);
@@ -582,37 +595,39 @@ public class Visitor extends IrFactory {
         Stmt stmt = forSubStmt.getStmt();
         
         // 定义基本块
-        BasicBlock initBb = makeBasicBlock();
         BasicBlock condBb = makeBasicBlock();
         BasicBlock forwardBb = makeBasicBlock();
         BasicBlock bodyBb = makeBasicBlock();
         BasicBlock endBb = makeBasicBlock();
-        Loop loop = new Loop(initBb, condBb, forwardBb, bodyBb, endBb);
+        Loop loop = new Loop(curBb, condBb, forwardBb, bodyBb, endBb);
         loopStack.push(loop);
         
         // 处理lForStmt
-        curBb = initBb;
+        // curBb 不需要变化
         if (lForStmt != null) {
             visitForStmt(lForStmt);
         }
         makeJump(condBb);
         
         // 处理cond
-        // 值得注意的是，这里面不需要加入跳转指令，因为cond的visit过程负责生成跳转指令
         curBb = condBb;
-        if (condBb != null) {
+        if (cond != null) {
+            // 值得注意的是，这里面不需要加入跳转指令，因为cond的visit过程负责生成跳转指令
             visitCond(cond, bodyBb, endBb);
+        } else {
+            // 当没有cond时，就需要加入无条件跳转了
+            makeJump(bodyBb);
         }
         
-        // 处理forward
+        // 处理rForStmt
         curBb = forwardBb;
-        if (forwardBb != null) {
+        if (rforStmt != null) {
             visitForStmt(rforStmt);
         }
         makeJump(condBb);
         
         // 处理bodyBb
-        curBb = endBb;
+        curBb = bodyBb;
         visitStmt(stmt);
         makeJump(forwardBb);
         
@@ -644,6 +659,11 @@ public class Visitor extends IrFactory {
             makeRet(null);
         } else {
             Value value = visitExp(exp);
+            // 调整位宽
+            Instruction instruction = tryMakeResize(value, curFunc.getReturnType());
+            if (instruction != null) {
+                value = instruction;
+            }
             makeRet(value);
         }
     }
@@ -656,7 +676,7 @@ public class Visitor extends IrFactory {
         LVal lVal = getintSubStmt.getLVal();
         Value vLVal = visitLVal(lVal);
         Call call = makeCall(Function.getint, new ArrayList<>());
-        Instruction instruction = tryMakeResize(call, (DataIrTy) vLVal.getType());
+        Instruction instruction = tryMakeResize(call, (DataIrTy) ((PointerIrTy) vLVal.getType()).deRefIrTy);
         if (instruction == null) {
             makeStore(call, vLVal);
         } else {
@@ -671,7 +691,7 @@ public class Visitor extends IrFactory {
         LVal lVal = getcharSubStmt.getLVal();
         Value vLVal = visitLVal(lVal);
         Call call = makeCall(Function.getchar, new ArrayList<>());
-        Instruction instruction = tryMakeResize(call, (DataIrTy) vLVal.getType());
+        Instruction instruction = tryMakeResize(call, (DataIrTy) ((PointerIrTy) vLVal.getType()).deRefIrTy);
         if (instruction == null) {
             makeStore(call, vLVal);
         } else {
@@ -703,12 +723,24 @@ public class Visitor extends IrFactory {
         for (int i = 0; i < strs.size(); i++) {
             String s = strs.get(i);
             if (s.equals("%d")) {
+                Value value = rParams.get(j++);
+                // 进行一个可能的位变化
+                Instruction instruction = tryMakeResize(value,DataIrTy.I32); // putint参数是 I32
+                if (instruction != null) {
+                    value = instruction;
+                }
                 ArrayList<Value> tmp = new ArrayList<>();
-                tmp.add(rParams.get(j++));
+                tmp.add(value);
                 makeCall(Function.putint, tmp);
             } else if (s.equals("%c")) {
+                Value value = rParams.get(j++);
+                // 进行一个可能的位变化
+                Instruction instruction = tryMakeResize(value,DataIrTy.I8); // putch参数是 I8
+                if (instruction != null) {
+                    value = instruction;
+                }
                 ArrayList<Value> tmp = new ArrayList<>();
-                tmp.add(rParams.get(j++));
+                tmp.add(value);
                 makeCall(Function.putch, tmp);
             } else {
                 // putstr
@@ -729,7 +761,7 @@ public class Visitor extends IrFactory {
         Value vExp = visitExp(exp);
         
         // 这时候需要处理一下位数不匹配的问题
-        Instruction instruction = tryMakeResize(vExp, (DataIrTy) vLVal.getType());
+        Instruction instruction = tryMakeResize(vExp, (DataIrTy) ((PointerIrTy) vLVal.getType()).deRefIrTy);
         if (instruction == null) {
             // 如果instruction为null，即无需resize，那接下来使用的就是init
             makeStore(vExp, vLVal);
@@ -921,7 +953,7 @@ public class Visitor extends IrFactory {
                 res = 0 - res;
             } else if (op.is(TokenType.NOT)) {
                 // 直接当初i32处理即可
-                if (res != 0) {
+                if (res == 0) {
                     res = 1;
                 }
             }
@@ -1120,6 +1152,7 @@ public class Visitor extends IrFactory {
                 // 不是最后一个
                 BasicBlock nextBlock = makeBasicBlock();
                 visitLAndExp(lAndExp, successBb, nextBlock);
+                curBb = nextBlock;
             } else {
                 visitLAndExp(lAndExp, successBb, failureBb);
             }
@@ -1176,6 +1209,7 @@ public class Visitor extends IrFactory {
                 res = value;
             }
             Icmp icmp = makeNeq(res, new ConstData(DataIrTy.I32, 0));
+            res = icmp;
         }
         
         for (int i = 2; i < nodes.size(); i+=2) {

@@ -223,13 +223,11 @@ public class IrFactory {
             op = Icmp.Op.SGE;
         } else if (tokenOp.is(TokenType.EQL)) {
             op = Icmp.Op.EQ;
-        } else {
-            /*
-               此处包含两种情况：
-               1. NOT
-               2. NEQ
-             */
+        } else if (tokenOp.is(TokenType.NEQ)){
             op = Icmp.Op.NE;
+        } else {
+            // NOT
+            op = Icmp.Op.EQ;
         }
         Icmp icmp = new Icmp(op, nameCounter++, leftOperand, rightOperand);
         curBb.add2end(icmp);

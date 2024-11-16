@@ -78,9 +78,9 @@ public class Getelementptr extends Instruction {
         sb.append(leftIndex.getType());
         sb.append(" ");
         sb.append(leftIndex.getName());
-        sb.append(", ");
         // rightIndex
         if (indexNum == 2) {
+            sb.append(", ");
             Value rightIndex = getOperand(2);
             sb.append(rightIndex.getType());
             sb.append(" ");

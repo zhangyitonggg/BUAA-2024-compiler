@@ -19,6 +19,6 @@ public class Zext extends Instruction {
     @Override
     public String toString() {
         return this.getName() + " = zext " + getOriValue().getType() + " " +
-                    getOriValue().getType() + " to " + this.getType();
+                    getOriValue().getName() + " to " + this.getType();
     }
 }
