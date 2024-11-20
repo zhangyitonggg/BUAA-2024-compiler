@@ -41,6 +41,23 @@ public class Call extends Instruction {
         hasReturnValue = false;
     }
     
+    public Function getFunction() {
+        return (Function) getOperand(0);
+    }
+    
+    public boolean hasReturnValue() {
+        return hasReturnValue;
+    }
+    
+    public ArrayList<Value> getRParams() {
+        ArrayList<Value> res = new ArrayList<>();
+        ArrayList<Value> all = getAllOperands();
+        for (int i = 1; i < all.size(); i++) {
+            res.add(all.get(i));
+        }
+        return res;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

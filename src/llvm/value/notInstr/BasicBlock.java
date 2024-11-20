@@ -36,7 +36,6 @@ public class BasicBlock extends Value {
         for (Instruction instr : instructions) {
             sb.append("    ");
             sb.append(instr.toString());
-            System.out.println(instr);
             sb.append("\n");
         }
         return sb.toString();

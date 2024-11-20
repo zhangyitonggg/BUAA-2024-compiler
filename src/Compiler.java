@@ -1,5 +1,6 @@
 import Utils.ErrorLog;
 import Utils.Printer;
+import backend.Mapper;
 import frontend.checker.Checker;
 import frontend.checker.SymbolTable;
 import frontend.lexer.Lexer;
@@ -35,5 +36,8 @@ public class Compiler {
         // 生成中间代码
         Module module = Visitor.getInstance().visit(compUnit);
         Printer.print2llvm(module.toString());
+        // 生成目标代码
+        String mipsCode = Mapper.getInstance().map(module);
+        Printer.print2mips(mipsCode);
     }
 }

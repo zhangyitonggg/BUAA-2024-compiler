@@ -24,6 +24,10 @@ public class Ret extends Instruction {
         hasReturnValue = false;
     }
     
+    public boolean hasReturnValue() {
+        return hasReturnValue;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

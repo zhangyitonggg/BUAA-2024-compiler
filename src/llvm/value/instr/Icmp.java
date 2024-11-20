@@ -35,6 +35,10 @@ public class Icmp extends Instruction {
         setOperands(operands);
     }
     
+    public Op getOp() {
+        return op;
+    }
+    
     @Override
     public String toString() {
         return getName() + " = icmp " + op.toString().toLowerCase() + " i32 " +

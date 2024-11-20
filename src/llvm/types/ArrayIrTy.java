@@ -11,6 +11,20 @@ public class ArrayIrTy extends IrTy {
         this.length = length;
     }
     
+    public boolean hasChar() {
+        return eleIrTy.isI8();
+    }
+    
+    @Override
+    public int getByte() {
+        return length * eleIrTy.getByte();
+    }
+    
+    @Override
+    public int getAlign() {
+        return eleIrTy.getByte();
+    }
+    
     @Override
     public boolean isArray() {
         return true;

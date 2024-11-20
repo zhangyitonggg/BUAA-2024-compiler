@@ -19,6 +19,7 @@ import llvm.value.Value;
  *  %7 = getelementptr inbounds i32, i32* %6, i32 2
  *  此时返回值类型为i32*，也就直接是传入的指针类型。
  *
+ * A,B偏移量均是32的
  *  getelementptr baseType, baseType* base, A, B;   ----    baseType.getElementType*
  *  getelementptr baseType, baseType* base, A;      ----    baseType*
  */
@@ -26,10 +27,11 @@ public class Getelementptr extends Instruction {
     private final int indexNum;
     private final IrTy baseType;
     
+    
     /**
      * 用于正常寻址
      * getelementptr baseType, baseType* base, A, B;   ----    baseType.getElementType*
-     * 对于我们的文法，A和B只可能是0
+     * 对于我们的文法，A只可能是0
      * @param nameCount
      * @param base
      * @param leftIndex
@@ -58,6 +60,23 @@ public class Getelementptr extends Instruction {
         this.baseType = calcBaseType(base);
         addOperand(base);
         addOperand(leftIndex);
+    }
+    
+    public Value getBase() {
+        return getOperand(0);
+    }
+    
+    public Value getIndex() {
+        if (indexNum == 1) {
+            return getOperand(1);
+        } else {
+            return getOperand(2);
+        }
+    }
+    
+    // 必然是int*或者char*
+    public PointerIrTy getType() {
+        return (PointerIrTy) super.getType();
     }
     
     @Override

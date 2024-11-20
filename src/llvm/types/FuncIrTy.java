@@ -13,6 +13,16 @@ public class FuncIrTy extends IrTy {
     }
     
     @Override
+    public int getByte() {
+        return returnTy.getByte();
+    }
+    
+    @Override
+    public int getAlign() {
+        return returnTy.getByte();
+    }
+    
+    @Override
     public boolean isFunction() {
         return true;
     }

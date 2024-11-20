@@ -26,7 +26,7 @@ public class GlobalVar extends User {
      * @param isConst
      */
     public GlobalVar(String name, Constant init, boolean isConst) {
-        super("@" + name, new PointerIrTy(init.getType()));
+        super("@g_" + name, new PointerIrTy(init.getType()));
         this.init = init;
         this.isConst = isConst;
     }
@@ -34,6 +34,7 @@ public class GlobalVar extends User {
     public Constant getInit(){
         return init;
     }
+    
     
     @Override
     public String toString() {
@@ -49,12 +50,14 @@ public class GlobalVar extends User {
         sb.append(type.toString());
         sb.append(" ");
         if (type instanceof ArrayIrTy) {
+            // init 一定不是null，当时写的什么狗屎
             if (init == null || ((ConstArray) init).isZero()) {
                 sb.append("zeroinitializer");
             } else {
                 sb.append(init.toString());
             }
         } else {
+            // init一定不是null
             sb.append(init.toString());
         }
         return sb.toString();

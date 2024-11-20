@@ -17,4 +17,12 @@ public class IrTy {
     public boolean isFunction() {
         return false;
     }
+    
+    public int getByte() {
+        return 0;
+    }
+    
+    public int getAlign() {
+        return 0;
+    }
 }

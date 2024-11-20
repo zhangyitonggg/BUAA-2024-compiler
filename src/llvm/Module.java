@@ -28,9 +28,20 @@ public class Module {
         functions.add(function);
     }
     
+    public ArrayList<StringLiteral> getStringLiterals() {
+        return this.stringLiterals;
+    }
+    
+    public ArrayList<GlobalVar> getGlobalVars() {
+        return this.globalVars;
+    }
+    
+    public ArrayList<Function> getFunctions() {
+        return this.functions;
+    }
+    
     @Override
     public String toString() {
-        System.out.println("print ir");
         StringBuilder sb = new StringBuilder();
         // 输出函数声明
         sb.append("declare i32 @getint()").append("\n");

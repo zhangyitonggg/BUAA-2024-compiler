@@ -18,6 +18,25 @@ public class DataIrTy extends IrTy {
     }
     
     @Override
+    public int getByte() {
+        if (isI1()) {
+            // 最小单位是1嘛
+            return 1;
+        } else if (isI8()) {
+            return 1;
+        } else if (isI32()) {
+            return 4;
+        } else {
+            return (bits + 3) / 4;
+        }
+    }
+    
+    @Override
+    public int getAlign() {
+        return getByte();
+    }
+    
+    @Override
     public boolean isBCI() {
         return isI1() || isI8() || isI32();
     }

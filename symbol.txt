@@ -1,10 +1,1 @@
-1 getIndex IntFunc
-1 setIndex IntFunc
-2 arr IntArray
-2 index Int
-3 arr IntArray
-3 index Int
-3 val Int
-3 temp Int
-4 arr1 IntArray
-4 arr2 IntArray
+1 s CharArray

@@ -4,9 +4,21 @@ import llvm.types.IrTy;
 import llvm.value.User;
 import llvm.value.Value;
 
+import java.util.ArrayList;
+
 public class Constant extends Value {
-    public Constant(IrTy type) {
+    protected Constant(IrTy type) {
         super(type);
     }
     
+    /**
+     * @return constData是否是char或者constArray是否由char组成
+     */
+    public boolean hasChar() {
+        return false;
+    }
+    
+    public ArrayList<Integer> getAllNum() {
+        return null;
+    }
 }

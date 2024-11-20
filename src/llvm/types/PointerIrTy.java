@@ -12,6 +12,16 @@ public class PointerIrTy extends DataIrTy {
     }
     
     @Override
+    public int getByte() {
+        return 4;
+    }
+    
+    @Override
+    public int getAlign() {
+        return 4;
+    }
+    
+    @Override
     public boolean isPointer() {
         return true;
     }

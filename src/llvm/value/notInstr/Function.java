@@ -2,6 +2,7 @@ package llvm.value.notInstr;
 
 import llvm.types.*;
 import llvm.value.Value;
+import llvm.value.instr.Instruction;
 import llvm.value.notInstr.BasicBlock;
 
 import java.util.ArrayList;
@@ -21,6 +22,17 @@ public class Function extends Value {
         }
     }
     
+    public ArrayList<Instruction> getAllInstr() {
+        ArrayList<Instruction> res = new ArrayList<>();
+        for (BasicBlock bb : bbs) {
+            res.addAll(bb.getAllInstr());
+        }
+        return res;
+    }
+    
+    public LinkedList<BasicBlock> getBbs() {
+        return bbs;
+    }
     
     public Function(String name, DataIrTy returnTy) {
         super("@" + name, new FuncIrTy(returnTy, new ArrayList<>()));

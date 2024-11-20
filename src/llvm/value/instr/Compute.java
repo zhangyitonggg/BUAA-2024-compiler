@@ -9,11 +9,11 @@ public class Compute extends Instruction {
     public enum Op {
         ADD,
         SUB,
-        AND,
-        OR,
+        // AND,
+        // OR,
         MUL,
         SDIV,
-        SREM
+        SREM,
     }
     
     private final Op op;

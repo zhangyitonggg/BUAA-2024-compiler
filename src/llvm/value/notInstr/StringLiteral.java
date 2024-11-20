@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringLiteral extends Value {
+    private String oriLiteral;
     private String literal;
     
     /**
@@ -18,8 +19,14 @@ public class StringLiteral extends Value {
      * @param literal
      */
     public StringLiteral(int strCount, String literal) {
-        super("@.str." + strCount, new PointerIrTy(calcBaseType(literal)));
+//        super("@.str." + strCount, new PointerIrTy(calcBaseType(literal)));
+        super("@str." + strCount, new PointerIrTy(calcBaseType(literal)));
         this.literal = deleteEnter(literal);
+        this.oriLiteral = literal;
+    }
+
+    public String getOriLiteral() {
+        return oriLiteral;
     }
     
     @Override

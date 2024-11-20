@@ -52,6 +52,16 @@ public class ConstArray extends Constant {
         return elements.size();
     }
     
+    @Override
+    public boolean hasChar() {
+        return ((ArrayIrTy) getType()).hasChar();
+    }
+    
+    @Override
+    public ArrayList<Integer> getAllNum() {
+        return new ArrayList<>(elements);
+    }
+    
     public ConstData getElement(int i) {
         if (i < elements.size()) {
             return new ConstData(((ArrayIrTy) getType()).eleIrTy, elements.get(i));
