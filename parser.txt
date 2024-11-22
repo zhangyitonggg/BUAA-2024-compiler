@@ -1,16 +1,13 @@
-CHARTK char
-IDENFR s
-LBRACK [
-INTCON 10
+INTTK int
+IDENFR a
+ASSIGN =
+INTCON 1
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-<ConstExp>
-RBRACK ]
-ASSIGN =
-STRCON "Hellc123"
+<Exp>
 <InitVal>
 <VarDef>
 SEMICN ;
@@ -20,34 +17,23 @@ MAINTK main
 LPARENT (
 RPARENT )
 LBRACE {
-PRINTFTK printf
-LPARENT (
-STRCON "%c"
-COMMA ,
-IDENFR s
-LBRACK [
+IDENFR a
+<LVal>
+ASSIGN =
+IDENFR a
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+PLUS +
 INTCON 1
 <Number>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 0
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
 <Exp>
-RBRACK ]
-<LVal>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-RPARENT )
 SEMICN ;
 <Stmt>
 RETURNTK return

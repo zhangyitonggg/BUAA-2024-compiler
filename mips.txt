@@ -1,38 +1,27 @@
 # by zyt 22373337
 .data
+g_a :.word 1
 
 
-g_s :.byte 72, 101, 108, 108, 99, 49, 50, 51, 0, 0
 
 
 
 .text
 main:
 b0:
-    li $k0, 1
-    li $k1, 0
-   # %v1 = add i32 1, 0
-    addu $k0, $k0, $k1
+   # %v1 = load i32, i32* @g_a
+    la $k0, g_a
+    lw $k0, 0($k0)
     sw $k0, -4($sp)
-   # %v2 = getelementptr inbounds [10 x i8], [10 x i8]* @g_s, i32 0, i32 %v1
-    la $k0, g_s
-    lw $k1, -4($sp)
+    lw $k0, -4($sp)
+    li $k1, 1
+   # %v2 = add i32 %v1, 1
     addu $k0, $k0, $k1
     sw $k0, -8($sp)
-   # %v3 = load i8, i8* %v2
+   # store i32 %v2, i32* @g_a
+    la $k1, g_a
     lw $k0, -8($sp)
-    lb $k0, 0($k0)
-    sb $k0, -12($sp)
-   # %v4 = zext i8 %v3 to i32
-    lb $k0, -12($sp)
-    sw $k0, -16($sp)
-   # %v5 = trunc i32 %v4 to i8
-    lw $k0, -16($sp)
-    sb $k0, -20($sp)
-   # call void @putch(i8  %v5)
-    lb $a0, -20($sp)
-    li $v0, 11
-    syscall
+    sw $k0, 0($k1)
    # ret i32 0
     li $v0, 10
     syscall

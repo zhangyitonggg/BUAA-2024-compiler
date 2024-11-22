@@ -1,0 +1,9 @@
+1 N ConstInt
+1 a IntArray
+1 fib IntFunc
+2 i Int
+5 i Int
+5 j Int
+5 a1 ConstInt
+5 a2 ConstInt
+5 k Int
