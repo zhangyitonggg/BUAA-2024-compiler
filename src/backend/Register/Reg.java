@@ -1,5 +1,6 @@
 package backend.Register;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Reg {
@@ -60,12 +61,14 @@ public class Reg {
         // 辅助寄存器，手动分配任务
         put(26, "k0");
         put(27, "k1");
+        
         // todo 可以挪作他用
         put(3, "v1");
 
         put(28, "gp");
         put(30, "fp");
     }};
+
     public final static Reg zero = new Reg(0, "zero");
     public final static Reg at = new Reg(1, "at");
     public final static Reg v0 = new Reg(2, "v0");

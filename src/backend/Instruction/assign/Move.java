@@ -5,7 +5,7 @@ import backend.Register.Reg;
 /**
  * 伪指令
  * move $t1. $t2
- * 其实就是addu $t1, $0, $t1
+ * 其实就是addu $t2, $0, $t1
  */
 public class Move extends AssignM {
     public Move(Reg to, Reg from) {
@@ -18,6 +18,6 @@ public class Move extends AssignM {
     
     @Override
     public String toString() {
-        return super.toString();
+        return "move " + to.toString() + ", " + from.toString();
     }
 }

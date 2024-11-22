@@ -67,7 +67,12 @@ public class MipsFactory {
         curFunc = function;
         curOffset = 0;
         value2offset = new HashMap<>();
-        value2reg = new HashMap<>();
+        // value2reg = new HashMap<>();
+        value2reg = function.getValue2reg();
+        for (Value value : value2reg.keySet()) {
+            System.out.println(value);
+            System.out.println(value2reg.get(value));
+        }
         Label label = new Label(function.getName().substring(1));
         instrList.add(label);
     }

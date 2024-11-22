@@ -1,16 +1,19 @@
 package llvm.value.notInstr;
 
+import backend.Register.Reg;
 import llvm.types.*;
 import llvm.value.Value;
 import llvm.value.instr.Instruction;
 import llvm.value.notInstr.BasicBlock;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Function extends Value {
     private final LinkedList<BasicBlock> bbs = new LinkedList<>();
     private final ArrayList<FParam> fParams = new ArrayList<>();
+    private HashMap<Value, Reg> value2reg = new HashMap<>();
     
     public Function(String name, DataIrTy returnTy, ArrayList<DataIrTy> fParamTys) {
         super("@" + name, new FuncIrTy(returnTy, fParamTys));
@@ -30,10 +33,6 @@ public class Function extends Value {
         return res;
     }
     
-    public LinkedList<BasicBlock> getBbs() {
-        return bbs;
-    }
-    
     public Function(String name, DataIrTy returnTy) {
         super("@" + name, new FuncIrTy(returnTy, new ArrayList<>()));
     }
@@ -51,10 +50,21 @@ public class Function extends Value {
         return fParams;
     }
     
+    public LinkedList<BasicBlock> getBbs() {
+        return bbs;
+    }
+    
     public void addBb2end(BasicBlock basicBlock) {
         bbs.addLast(basicBlock);
     }
     
+    public void setValue2reg(HashMap<Value, Reg> value2reg) {
+        this.value2reg = value2reg;
+    }
+    
+    public HashMap<Value, Reg> getValue2reg() {
+        return value2reg;
+    }
     
     /**
      * 这里只考虑自定义的函数，对于库函数的Declare在Module的toString中进行

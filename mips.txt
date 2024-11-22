@@ -1,6 +1,5 @@
 # by zyt 22373337
 .data
-g_a :.word 1
 
 
 
@@ -9,19 +8,16 @@ g_a :.word 1
 .text
 main:
 b0:
-   # %v1 = load i32, i32* @g_a
-    la $k0, g_a
-    lw $k0, 0($k0)
-    sw $k0, -4($sp)
-    lw $k0, -4($sp)
+   # %v1 = alloca i32
+    li $s7, -4
+    addu $s7, $sp, $s7
+   # %v2 = load i32, i32* %v1
+    lw $s6, 0($s7)
     li $k1, 1
-   # %v2 = add i32 %v1, 1
-    addu $k0, $k0, $k1
-    sw $k0, -8($sp)
-   # store i32 %v2, i32* @g_a
-    la $k1, g_a
-    lw $k0, -8($sp)
-    sw $k0, 0($k1)
+   # %v3 = add i32 %v2, 1
+    addu $s5, $s6, $k1
+   # store i32 %v3, i32* %v1
+    sw $s5, 0($s7)
    # ret i32 0
     li $v0, 10
     syscall

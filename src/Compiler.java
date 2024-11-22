@@ -1,3 +1,4 @@
+import Utils.Config;
 import Utils.ErrorLog;
 import Utils.Printer;
 import backend.Mapper;
@@ -9,6 +10,7 @@ import frontend.parser.AST.CompUnit;
 import frontend.parser.Parser;
 import llvm.Module;
 import llvm.Visitor;
+import optimize.RegAlloca;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +38,9 @@ public class Compiler {
         // 生成中间代码
         Module module = Visitor.getInstance().visit(compUnit);
         Printer.print2llvm(module.toString());
+        if (Config.optimizeFlag) {
+            RegAlloca.getInstance(module).alloca();
+        }
         // 生成目标代码
         String mipsCode = Mapper.getInstance().map(module);
         Printer.print2mips(mipsCode);

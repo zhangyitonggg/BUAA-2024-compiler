@@ -1,22 +1,13 @@
 INTTK int
-IDENFR a
-ASSIGN =
-INTCON 1
-<Number>
-<PrimaryExp>
-<UnaryExp>
-<MulExp>
-<AddExp>
-<Exp>
-<InitVal>
-<VarDef>
-SEMICN ;
-<VarDecl>
-INTTK int
 MAINTK main
 LPARENT (
 RPARENT )
 LBRACE {
+INTTK int
+IDENFR a
+<VarDef>
+SEMICN ;
+<VarDecl>
 IDENFR a
 <LVal>
 ASSIGN =

@@ -482,7 +482,7 @@ public class Mapper extends MipsFactory {
             makeStore(trunc.getType().getAlign(), tmp, findOffset(trunc), Reg.sp);
         } else if (target != tmp) {
             // 二者不同时才有复制的必要
-            makeMove(target, target);
+            makeMove(target, tmp);
         }
         // 决定是否加注释
         if (num < instrList.size()) {
@@ -513,7 +513,7 @@ public class Mapper extends MipsFactory {
             makeStore(zext.getType().getAlign(), tmp, findOffset(zext), Reg.sp);
         } else if (target != tmp) {
             // 二者不同时才有复制的必要
-            makeMove(target, target);
+            makeMove(target, tmp);
         }
         // 决定是否加注释
         if (num < instrList.size()) {
