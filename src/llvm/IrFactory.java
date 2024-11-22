@@ -39,15 +39,17 @@ public class IrFactory {
     
     // 常量
     protected Alloca makeAlloca(IrTy baseTy, Constant init) {
-        Alloca alloca = new Alloca(nameCounter++, baseTy, init);
-        curBb.add2end(alloca);
+        Alloca alloca = new Alloca(curFunc.getFirstBb(), nameCounter++, baseTy, init);
+        // curBb.add2end(alloca);
+        curFunc.getFirstBb().add2head(alloca);
         return alloca;
     }
     
     // 变量
     protected Alloca makeAlloca(IrTy baseTy) {
-        Alloca alloca = new Alloca(nameCounter++, baseTy);
-        curBb.add2end(alloca);
+        Alloca alloca = new Alloca(curFunc.getFirstBb(),nameCounter++, baseTy);
+        // curBb.add2end(alloca);
+        curFunc.getFirstBb().add2head(alloca);
         return alloca;
     }
     
@@ -64,7 +66,7 @@ public class IrFactory {
         if (instruction2 != null) {
             delta2 = instruction2;
         }
-        Getelementptr getelementptr = new Getelementptr(nameCounter++, base, delta1, delta2);
+        Getelementptr getelementptr = new Getelementptr(curBb, nameCounter++, base, delta1, delta2);
         curBb.add2end(getelementptr);
         return getelementptr;
     }
@@ -78,13 +80,13 @@ public class IrFactory {
         if (instruction != null) {
             delta = instruction;
         }
-        Getelementptr getelementptr = new Getelementptr(nameCounter++, base, delta);
+        Getelementptr getelementptr = new Getelementptr(curBb, nameCounter++, base, delta);
         curBb.add2end(getelementptr);
         return getelementptr;
     }
     
     protected void makeStore(Value from, Value to) {
-        Store store = new Store(from, to);
+        Store store = new Store(curBb, from, to);
         curBb.add2end(store);
     }
     
@@ -102,7 +104,7 @@ public class IrFactory {
     }
     
     protected BasicBlock makeBasicBlock() {
-        BasicBlock bb = new BasicBlock(nameCounter++);
+        BasicBlock bb = new BasicBlock(curFunc, nameCounter++);
         curFunc.addBb2end(bb);
         return bb;
     }
@@ -121,9 +123,9 @@ public class IrFactory {
         DataIrTy oriTy = (DataIrTy) oriValue.getType();
         Instruction instruction;
         if (oriTy.less(targetTy)) {
-            instruction = new Zext(nameCounter++, oriValue, targetTy);
+            instruction = new Zext(curBb, nameCounter++, oriValue, targetTy);
         } else if (oriTy.more(targetTy)) {
-            instruction = new Trunc(nameCounter++, oriValue, targetTy);
+            instruction = new Trunc(curBb,nameCounter++, oriValue, targetTy);
         } else {
             return null;
         }
@@ -137,20 +139,20 @@ public class IrFactory {
     protected void makeRet(Value value) {
         Ret ret;
         if (value == null) {
-           ret = new Ret();
+           ret = new Ret(curBb);
        } else {
-            ret = new Ret(value);
+            ret = new Ret(curBb, value);
         }
         curBb.add2end(ret);
     }
     
     protected void makeJump(BasicBlock toBb) {
-        Jump jump = new Jump(toBb);
+        Jump jump = new Jump(curBb, toBb);
         curBb.add2end(jump);
     }
     
     protected void makeBranch(Value cond, BasicBlock trueBb, BasicBlock falseBb) {
-        Branch branch = new Branch(cond, trueBb, falseBb);
+        Branch branch = new Branch(curBb, cond, trueBb, falseBb);
         curBb.add2end(branch);
     }
     
@@ -159,11 +161,11 @@ public class IrFactory {
             rParams = new ArrayList<>();
         }
         if (((FuncIrTy) function.getType()).returnTy.isVoid()) {
-            Call call = new Call(function, rParams);
+            Call call = new Call(curBb, function, rParams);
             curBb.add2end(call);
             return call;
         } else {
-            Call call = new Call(nameCounter++, function, rParams);
+            Call call = new Call(curBb, nameCounter++, function, rParams);
             curBb.add2end(call);
             return call;
         }
@@ -188,13 +190,13 @@ public class IrFactory {
     }
     
     protected Compute makeCompute(Compute.Op op,Value leftOperand, Value rightOperand) {
-        Compute compute = new Compute(op, nameCounter++, leftOperand, rightOperand);
+        Compute compute = new Compute(curBb, op, nameCounter++, leftOperand, rightOperand);
         curBb.add2end(compute);
         return compute;
     }
     
     protected Load makeLoad(Value pointer) {
-        Load load = new Load(nameCounter++, pointer);
+        Load load = new Load(curBb, nameCounter++, pointer);
         curBb.add2end(load);
         return load;
     }
@@ -229,7 +231,7 @@ public class IrFactory {
             // NOT
             op = Icmp.Op.EQ;
         }
-        Icmp icmp = new Icmp(op, nameCounter++, leftOperand, rightOperand);
+        Icmp icmp = new Icmp(curBb, op, nameCounter++, leftOperand, rightOperand);
         curBb.add2end(icmp);
         return icmp;
     }

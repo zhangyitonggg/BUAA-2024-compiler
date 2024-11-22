@@ -9,12 +9,16 @@ import java.util.LinkedList;
 public class BasicBlock extends Value {
     private final LinkedList<Instruction> instructions = new LinkedList<>();
     
-    public BasicBlock(int nameCount) {
-        super("%b" + nameCount, new LabelIrTy());
+    public BasicBlock(Value host, int nameCount) {
+        super(host, "%b" + nameCount, new LabelIrTy());
     }
     
     public void add2end(Instruction instruction) {
         instructions.addLast(instruction);
+    }
+    
+    public void add2head(Instruction instruction) {
+        instructions.addFirst(instruction);
     }
     
     public LinkedList<Instruction> getAllInstr() {

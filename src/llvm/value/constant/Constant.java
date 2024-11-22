@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Constant extends Value {
     protected Constant(IrTy type) {
-        super(type);
+        super(null, type);
     }
     
     /**

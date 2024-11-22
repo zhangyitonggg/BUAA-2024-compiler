@@ -26,7 +26,7 @@ public class GlobalVar extends User {
      * @param isConst
      */
     public GlobalVar(String name, Constant init, boolean isConst) {
-        super("@g_" + name, new PointerIrTy(init.getType()));
+        super(null, "@g_" + name, new PointerIrTy(init.getType()));
         this.init = init;
         this.isConst = isConst;
     }

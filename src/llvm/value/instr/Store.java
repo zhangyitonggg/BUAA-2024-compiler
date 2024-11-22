@@ -7,8 +7,8 @@ import llvm.value.Value;
  * store <ty> <value>, ptr <pointer>
  */
 public class Store extends Instruction {
-    public Store(Value value, Value pointer) {
-        super(new VoidIrTy());
+    public Store(Value host, Value value, Value pointer) {
+        super(host, new VoidIrTy());
         addOperand(value);
         addOperand(pointer);
     }

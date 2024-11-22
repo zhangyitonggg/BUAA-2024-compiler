@@ -18,8 +18,8 @@ public class Compute extends Instruction {
     
     private final Op op;
     
-    public Compute(Op op, int nameCount, Value leftOperand, Value rightOperand) {
-        super("%v" + nameCount, DataIrTy.I32); // 此处一定是I32
+    public Compute(Value host, Op op, int nameCount, Value leftOperand, Value rightOperand) {
+        super(host, "%v" + nameCount, DataIrTy.I32); // 此处一定是I32
         this.op = op;
         
         ArrayList<Value> operands = new ArrayList<>();

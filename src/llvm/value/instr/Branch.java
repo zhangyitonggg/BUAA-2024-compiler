@@ -9,8 +9,8 @@ import llvm.value.notInstr.BasicBlock;
  * br i1 <cond>, label <iftrue>, label <iffalse>
  */
 public class Branch extends Instruction {
-    public Branch(Value cond, BasicBlock trueBb, BasicBlock falseBb) {
-        super(new VoidIrTy());
+    public Branch(Value host, Value cond, BasicBlock trueBb, BasicBlock falseBb) {
+        super(host, new VoidIrTy());
         addOperand(cond);
         addOperand(trueBb);
         addOperand(falseBb);

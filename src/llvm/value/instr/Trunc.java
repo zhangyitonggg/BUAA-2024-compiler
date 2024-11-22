@@ -7,8 +7,8 @@ import llvm.value.Value;
  * <result> = trunc <ty> <value> to <ty2>
  */
 public class Trunc extends Instruction {
-    public Trunc(int nameCount, Value oriValue, DataIrTy targetTy) {
-        super("%v" + nameCount, targetTy);
+    public Trunc(Value host, int nameCount, Value oriValue, DataIrTy targetTy) {
+        super(host, "%v" + nameCount, targetTy);
         addOperand(oriValue);
     }
     

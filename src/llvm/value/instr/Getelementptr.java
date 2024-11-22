@@ -5,6 +5,7 @@ import llvm.types.DataIrTy;
 import llvm.types.IrTy;
 import llvm.types.PointerIrTy;
 import llvm.value.Value;
+import llvm.value.notInstr.BasicBlock;
 
 /**
  * <result> = getelementptr <ty>, ptr <ptrval>{, <ty> <idx>}*
@@ -37,8 +38,8 @@ public class Getelementptr extends Instruction {
      * @param leftIndex
      * @param rightIndex
      */
-    public Getelementptr(int nameCount, Value base, Value leftIndex, Value rightIndex) {
-        super("%v" + nameCount, new PointerIrTy(((ArrayIrTy) calcBaseType(base)).eleIrTy));
+    public Getelementptr(BasicBlock host, int nameCount, Value base, Value leftIndex, Value rightIndex) {
+        super(host, "%v" + nameCount, new PointerIrTy(((ArrayIrTy) calcBaseType(base)).eleIrTy));
         this.indexNum = 2;
         this.baseType = calcBaseType(base);
         addOperand(base);
@@ -54,8 +55,8 @@ public class Getelementptr extends Instruction {
      * @param base
      * @param leftIndex
      */
-    public Getelementptr(int nameCount, Value base, Value leftIndex) {
-        super("%v" + nameCount, (PointerIrTy) base.getType());
+    public Getelementptr(BasicBlock host, int nameCount, Value base, Value leftIndex) {
+        super(host, "%v" + nameCount, (PointerIrTy) base.getType());
         this.indexNum = 1;
         this.baseType = calcBaseType(base);
         addOperand(base);

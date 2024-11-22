@@ -12,15 +12,15 @@ import llvm.value.Value;
 public class Ret extends Instruction {
     private final boolean hasReturnValue;
     // 有返回值
-    public Ret(Value returnValue) {
-        super((DataIrTy) returnValue.getType());
+    public Ret(Value host, Value returnValue) {
+        super(host, (DataIrTy) returnValue.getType());
         addOperand(returnValue);
         hasReturnValue = true;
     }
     
     // 无返回值
-    public Ret() {
-        super(new VoidIrTy());
+    public Ret(Value host) {
+        super(host, new VoidIrTy());
         hasReturnValue = false;
     }
     

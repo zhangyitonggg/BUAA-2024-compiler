@@ -16,14 +16,19 @@ public class Function extends Value {
     private HashMap<Value, Reg> value2reg = new HashMap<>();
     
     public Function(String name, DataIrTy returnTy, ArrayList<DataIrTy> fParamTys) {
-        super("@" + name, new FuncIrTy(returnTy, fParamTys));
+        super(null, "@" + name, new FuncIrTy(returnTy, fParamTys));
         if (fParamTys == null) {
             return;
         }
         for (int i = 0; i < fParamTys.size(); i++) {
-            fParams.add(new FParam(i, fParamTys.get(i)));
+            fParams.add(new FParam(this, i, fParamTys.get(i)));
         }
     }
+    
+    public Function(String name, DataIrTy returnTy) {
+        super(null, "@" + name, new FuncIrTy(returnTy, new ArrayList<>()));
+    }
+    
     
     public ArrayList<Instruction> getAllInstr() {
         ArrayList<Instruction> res = new ArrayList<>();
@@ -32,11 +37,6 @@ public class Function extends Value {
         }
         return res;
     }
-    
-    public Function(String name, DataIrTy returnTy) {
-        super("@" + name, new FuncIrTy(returnTy, new ArrayList<>()));
-    }
-    
     
     public DataIrTy getReturnType() {
         return ((FuncIrTy) getType()).returnTy;
@@ -48,6 +48,10 @@ public class Function extends Value {
    
     public ArrayList<FParam> getFParams() {
         return fParams;
+    }
+    
+    public BasicBlock getFirstBb() {
+        return bbs.get(0);
     }
     
     public LinkedList<BasicBlock> getBbs() {

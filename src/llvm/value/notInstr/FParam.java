@@ -6,8 +6,8 @@ import llvm.value.Value;
 
 public class FParam extends Value {
     // index是参数编号，0、1、2
-    public FParam(int index, DataIrTy dataIrTy) {
-        super("%a" + index, dataIrTy);
+    public FParam(Value host, int index, DataIrTy dataIrTy) {
+        super(host,"%a" + index, dataIrTy);
     }
     
     public int getIndex() {

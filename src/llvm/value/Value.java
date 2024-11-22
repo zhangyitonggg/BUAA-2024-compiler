@@ -12,7 +12,10 @@ public class Value {
     private final IrTy type;
     private final ArrayList<Use> uses; // 里面存的Use关系的Used是自己
     
-    public Value(String name, IrTy type) {
+    private Value host;
+    
+    public Value(Value host, String name, IrTy type) {
+        this.host = host;
         this.id = idCount;
         this.name = name;
         this.type = type;
@@ -21,7 +24,8 @@ public class Value {
         idCount += 1;
     }
     
-    public Value(IrTy type) {
+    public Value(Value host, IrTy type) {
+        this.host = host;
         this.id = idCount;
         this.name = null;
         this.type = type;
@@ -45,6 +49,10 @@ public class Value {
     
     public String getName() {
         return this.name;
+    }
+    
+    public Value getHost() {
+        return host;
     }
 }
 

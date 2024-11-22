@@ -5,8 +5,8 @@ import llvm.types.PointerIrTy;
 import llvm.value.Value;
 
 public class Load extends Instruction{
-    public Load(int nameCount, Value pointer) {
-        super("%v" + nameCount, (DataIrTy)(((PointerIrTy) pointer.getType()).deRefIrTy));
+    public Load(Value host, int nameCount, Value pointer) {
+        super(host, "%v" + nameCount, (DataIrTy)(((PointerIrTy) pointer.getType()).deRefIrTy));
         addOperand(pointer);
     }
     

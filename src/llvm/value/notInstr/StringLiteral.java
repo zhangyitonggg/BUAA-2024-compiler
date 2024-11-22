@@ -20,7 +20,7 @@ public class StringLiteral extends Value {
      */
     public StringLiteral(int strCount, String literal) {
 //        super("@.str." + strCount, new PointerIrTy(calcBaseType(literal)));
-        super("@str." + strCount, new PointerIrTy(calcBaseType(literal)));
+        super(null, "@str." + strCount, new PointerIrTy(calcBaseType(literal)));
         this.literal = deleteEnter(literal);
         this.oriLiteral = literal;
     }

@@ -19,8 +19,8 @@ public class Call extends Instruction {
      * @param function
      * @param rParams
      */
-    public Call(int nameCount, Function function, ArrayList<Value> rParams) {
-        super("%v" + nameCount, function.getReturnType());
+    public Call(Value host, int nameCount, Function function, ArrayList<Value> rParams) {
+        super(host, "%v" + nameCount, function.getReturnType());
         addOperand(function);
         if (!rParams.isEmpty()) {
             for (Value rParam : rParams) {
@@ -30,8 +30,8 @@ public class Call extends Instruction {
         hasReturnValue = true;
     }
     
-    public Call(Function function, ArrayList<Value> rParams) {
-        super(function.getReturnType());
+    public Call(Value host, Function function, ArrayList<Value> rParams) {
+        super(host, function.getReturnType());
         addOperand(function);
         if (!rParams.isEmpty()) {
             for (Value rParam : rParams) {

@@ -7,8 +7,8 @@ import llvm.value.Value;
  * <result> = zext <ty> <value> to <ty2>
  */
 public class Zext extends Instruction {
-    public Zext(int nameCount, Value oriValue, DataIrTy targetTy) {
-        super("%v" + nameCount, targetTy);
+    public Zext(Value host, int nameCount, Value oriValue, DataIrTy targetTy) {
+        super(host, "%v" + nameCount, targetTy);
         addOperand(oriValue);
     }
     

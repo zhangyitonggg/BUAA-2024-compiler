@@ -25,8 +25,8 @@ public class Icmp extends Instruction {
      * @param leftOperand
      * @param rightOperand
      */
-    public Icmp(Op op, int nameCount, Value leftOperand, Value rightOperand) {
-        super("%v" + nameCount, DataIrTy.I1);
+    public Icmp(Value host, Op op, int nameCount, Value leftOperand, Value rightOperand) {
+        super(host, "%v" + nameCount, DataIrTy.I1);
         this.op = op;
         
         ArrayList<Value> operands = new ArrayList<>();

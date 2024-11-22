@@ -1,6 +1,7 @@
 package llvm.value.instr;
 
 import llvm.types.VoidIrTy;
+import llvm.value.Value;
 import llvm.value.notInstr.BasicBlock;
 
 /**
@@ -8,8 +9,8 @@ import llvm.value.notInstr.BasicBlock;
  * br label <dest>
  */
 public class Jump extends Instruction {
-    public Jump(BasicBlock targetBb) {
-        super(new VoidIrTy());
+    public Jump(Value host, BasicBlock targetBb) {
+        super(host, new VoidIrTy());
         addOperand(targetBb);
     }
     

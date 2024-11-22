@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class User extends Value {
     private ArrayList<Value> operands; // 这些操作数均是this的used
     
-    public User(String name, IrTy type, ArrayList<Value> operands) {
-        super(name, type);
+    public User(Value host, String name, IrTy type, ArrayList<Value> operands) {
+        super(host, name, type);
         this.operands = operands;
         // 更新used的信息
         for (Value operand : operands) {
@@ -18,13 +18,13 @@ public class User extends Value {
             operand.addUse(this);
         }
     }
-    public User(String name, IrTy type) {
-        super(name, type);
+    public User(Value host, String name, IrTy type) {
+        super(host, name, type);
         this.operands = new ArrayList<>();
     }
     
-    public User(IrTy type) {
-        super(type);
+    public User(Value host, IrTy type) {
+        super(host, type);
         this.operands = new ArrayList<>();
     }
     
