@@ -7,27 +7,215 @@
 
 .text
 main:
-b0:
-   # %v1 = alloca i32
-    li $k0, -16
+b8:
+   # %v9 = alloca [10 x i8]
+    li $k0, -88
     addu $k0, $sp, $k0
     sw $k0, -4($sp)
-   # %v2 = load i32, i32* %v1
+   # %v10 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
     lw $k0, -4($sp)
-    lw $k0, 0($k0)
+    li $k1, 0
+    addu $k0, $k0, $k1
     sw $k0, -8($sp)
+   # store i8 97, i8* %v10
+    lw $k1, -8($sp)
+    li $k0, 97
+    sb $k0, 0($k1)
+   # %v11 = getelementptr inbounds i8, i8* %v10, i32 1
     lw $k0, -8($sp)
     li $k1, 1
-   # %v3 = add i32 %v2, 1
     addu $k0, $k0, $k1
     sw $k0, -12($sp)
-   # store i32 %v3, i32* %v1
-    lw $k1, -4($sp)
-    lw $k0, -12($sp)
-    sw $k0, 0($k1)
+   # store i8 97, i8* %v11
+    lw $k1, -12($sp)
+    li $k0, 97
+    sb $k0, 0($k1)
+   # %v12 = getelementptr inbounds i8, i8* %v10, i32 2
+    lw $k0, -8($sp)
+    li $k1, 2
+    addu $k0, $k0, $k1
+    sw $k0, -16($sp)
+   # store i8 97, i8* %v12
+    lw $k1, -16($sp)
+    li $k0, 97
+    sb $k0, 0($k1)
+   # %v13 = getelementptr inbounds i8, i8* %v10, i32 3
+    lw $k0, -8($sp)
+    li $k1, 3
+    addu $k0, $k0, $k1
+    sw $k0, -20($sp)
+   # store i8 97, i8* %v13
+    lw $k1, -20($sp)
+    li $k0, 97
+    sb $k0, 0($k1)
+   # %v14 = getelementptr inbounds i8, i8* %v10, i32 4
+    lw $k0, -8($sp)
+    li $k1, 4
+    addu $k0, $k0, $k1
+    sw $k0, -24($sp)
+   # store i8 0, i8* %v14
+    lw $k1, -24($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v15 = getelementptr inbounds i8, i8* %v10, i32 5
+    lw $k0, -8($sp)
+    li $k1, 5
+    addu $k0, $k0, $k1
+    sw $k0, -28($sp)
+   # store i8 0, i8* %v15
+    lw $k1, -28($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v16 = getelementptr inbounds i8, i8* %v10, i32 6
+    lw $k0, -8($sp)
+    li $k1, 6
+    addu $k0, $k0, $k1
+    sw $k0, -32($sp)
+   # store i8 0, i8* %v16
+    lw $k1, -32($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v17 = getelementptr inbounds i8, i8* %v10, i32 7
+    lw $k0, -8($sp)
+    li $k1, 7
+    addu $k0, $k0, $k1
+    sw $k0, -36($sp)
+   # store i8 0, i8* %v17
+    lw $k1, -36($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v18 = getelementptr inbounds i8, i8* %v10, i32 8
+    lw $k0, -8($sp)
+    li $k1, 8
+    addu $k0, $k0, $k1
+    sw $k0, -40($sp)
+   # store i8 0, i8* %v18
+    lw $k1, -40($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v19 = getelementptr inbounds i8, i8* %v10, i32 9
+    lw $k0, -8($sp)
+    li $k1, 9
+    addu $k0, $k0, $k1
+    sw $k0, -44($sp)
+   # store i8 0, i8* %v19
+    lw $k1, -44($sp)
+    li $k0, 0
+    sb $k0, 0($k1)
+   # %v20 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -48($sp)
+   # %v21 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -52($sp)
+   # %v22 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -56($sp)
+   # %v23 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -60($sp)
+   # %v24 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -64($sp)
+   # %v25 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -68($sp)
+   # %v26 = getelementptr inbounds [10 x i8], [10 x i8]* %v9, i32 0, i32 0
+    lw $k0, -4($sp)
+    li $k1, 0
+    addu $k0, $k0, $k1
+    sw $k0, -72($sp)
+   # %v27 = call i32 @func(i8*  %v20, i8*  %v21, i8*  %v22, i8*  %v23, i8*  %v24, i8*  %v25, i8*  %v26)
+    sw $ra, -92($sp)
+    lw $a0, -48($sp)
+    lw $a1, -52($sp)
+    lw $a2, -56($sp)
+    lw $a3, -60($sp)
+    lw $k0, -64($sp)
+    sw $k0, -112($sp)
+    lw $k0, -68($sp)
+    sw $k0, -116($sp)
+    lw $k0, -72($sp)
+    sw $k0, -120($sp)
+    li $k0, -92
+    addu $sp, $sp, $k0
+    jal func
+    lw $ra, 0($sp)
+    li $k0, 92
+    addu $sp, $sp, $k0
+    sw $v0, -76($sp)
    # ret i32 0
     li $v0, 10
     syscall
+func:
+b0:
+   # %v7 = alloca i8*
+    li $k0, -60
+    addu $k0, $sp, $k0
+    sw $k0, -32($sp)
+   # %v6 = alloca i8*
+    li $k0, -64
+    addu $k0, $sp, $k0
+    sw $k0, -36($sp)
+   # %v5 = alloca i8*
+    li $k0, -68
+    addu $k0, $sp, $k0
+    sw $k0, -40($sp)
+   # %v4 = alloca i8*
+    li $k0, -72
+    addu $k0, $sp, $k0
+    sw $k0, -44($sp)
+   # %v3 = alloca i8*
+    li $k0, -76
+    addu $k0, $sp, $k0
+    sw $k0, -48($sp)
+   # %v2 = alloca i8*
+    li $k0, -80
+    addu $k0, $sp, $k0
+    sw $k0, -52($sp)
+   # %v1 = alloca i8*
+    li $k0, -84
+    addu $k0, $sp, $k0
+    sw $k0, -56($sp)
+   # store i8* %a0, i8** %v1
+    lw $k1, -56($sp)
+    sw $a0, 0($k1)
+   # store i8* %a1, i8** %v2
+    lw $k1, -52($sp)
+    sw $a1, 0($k1)
+   # store i8* %a2, i8** %v3
+    lw $k1, -48($sp)
+    sw $a2, 0($k1)
+   # store i8* %a3, i8** %v4
+    lw $k1, -44($sp)
+    sw $a3, 0($k1)
+   # store i8* %a4, i8** %v5
+    lw $k1, -40($sp)
+    lw $k0, -20($sp)
+    sw $k0, 0($k1)
+   # store i8* %a5, i8** %v6
+    lw $k1, -36($sp)
+    lw $k0, -24($sp)
+    sw $k0, 0($k1)
+   # store i8* %a6, i8** %v7
+    lw $k1, -32($sp)
+    lw $k0, -28($sp)
+    sw $k0, 0($k1)
+   # ret i32 1
+    li $v0, 1
+    jr $ra
 
 
 # finished

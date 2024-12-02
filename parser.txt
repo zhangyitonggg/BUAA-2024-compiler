@@ -1,26 +1,145 @@
 INTTK int
+<FuncType>
+IDENFR func
+LPARENT (
+CHARTK char
+IDENFR s1
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s2
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s3
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s4
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s5
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s6
+LBRACK [
+RBRACK ]
+<FuncFParam>
+COMMA ,
+CHARTK char
+IDENFR s7
+LBRACK [
+RBRACK ]
+<FuncFParam>
+<FuncFParams>
+RPARENT )
+LBRACE {
+RETURNTK return
+INTCON 1
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+SEMICN ;
+<Stmt>
+RBRACE }
+<Block>
+<FuncDef>
+INTTK int
 MAINTK main
 LPARENT (
 RPARENT )
 LBRACE {
-INTTK int
-IDENFR a
+CHARTK char
+IDENFR s
+LBRACK [
+INTCON 10
+<Number>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<ConstExp>
+RBRACK ]
+ASSIGN =
+STRCON "aaaa"
+<InitVal>
 <VarDef>
 SEMICN ;
 <VarDecl>
-IDENFR a
-<LVal>
-ASSIGN =
-IDENFR a
+IDENFR func
+LPARENT (
+IDENFR s
 <LVal>
 <PrimaryExp>
 <UnaryExp>
 <MulExp>
 <AddExp>
-PLUS +
-INTCON 1
-<Number>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
 <PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+COMMA ,
+IDENFR s
+<LVal>
+<PrimaryExp>
+<UnaryExp>
+<MulExp>
+<AddExp>
+<Exp>
+<FuncRParams>
+RPARENT )
 <UnaryExp>
 <MulExp>
 <AddExp>

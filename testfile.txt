@@ -1,8 +1,8 @@
-
-
-int main()
-{
-    int a;
-    a = a + 1;
+int func(char s1[], char s2[], char s3[], char s4[], char s5[], char s6[], char s7[]) {
+    return 1;
+}
+int main() {
+    char s[10] = "aaaa";
+    func(s, s, s, s, s, s, s);
     return 0;
 }

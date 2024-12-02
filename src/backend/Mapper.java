@@ -76,7 +76,11 @@ public class Mapper extends MipsFactory {
         }
         // 为所有指令分配寄存器或者压栈，当然，目前只有压栈
         for (Instruction instruction : function.getAllInstr()) {
-            if (instruction.getName() != null && findOffset(instruction) == null && findReg(instruction) == null) {
+            if (instruction instanceof Copy copy && findOffset(copy.getTarget()) == null && findReg(copy.getTarget()) == null) {
+                int byteNum = copy.getTarget().getType().getByte();
+                subAlign(byteNum, 4);
+                putOffset(copy.getTarget(), curOffset);
+            } else if (instruction.getName() != null && findOffset(instruction) == null && findReg(instruction) == null) {
                 int byteNum = instruction.getType().getByte();
                 // 传参时应当遵守四字节对齐的约定
                 // int align = instruction.getType().getAlign();
@@ -131,7 +135,9 @@ public class Mapper extends MipsFactory {
     }
     
     protected void mapInstruction(Instruction instruction) {
-        if (instruction instanceof Compute compute) {
+        if (instruction instanceof Copy copy) {
+            mapCopy(copy);
+        } else if (instruction instanceof Compute compute) {
             mapCompute(compute);
         } else if (instruction instanceof Alloca alloca) {
             mapAlloca(alloca);
@@ -157,6 +163,30 @@ public class Mapper extends MipsFactory {
             mapLoad(load);
         } else {
             System.out.println("What happened!!!");
+        }
+    }
+    
+    public void mapCopy(Copy copy) {
+        // 准备工作
+        Value from = copy.getFrom();
+        Value target = copy.getTarget();
+        Reg fromReg = findReg(from);
+        Reg targetReg = findReg(target);
+        if (targetReg == null) {
+            targetReg = Reg.k0;
+        }
+        
+        if (from instanceof ConstData fromConstData) {
+            makeLi(targetReg, fromConstData.getValue());
+        } else if (fromReg != null) {
+            makeMove(targetReg, fromReg);
+        } else {
+            // 似乎这里用from和target没任何区别
+            makeLoad(from.getType().getAlign(), targetReg, findOffset(from), Reg.sp);
+        }
+        
+        if (findReg(target) == null) {
+            makeStore(target.getType().getAlign(), targetReg, findOffset(target), Reg.sp);
         }
     }
     
@@ -233,6 +263,8 @@ public class Mapper extends MipsFactory {
                 makeStore(function.getReturnType().getAlign(), Reg.v0, findOffset(call), Reg.sp);
             }
         } else if (name.equals("putint") || name.equals("putch")) {
+            // 先保存a0
+            makeMove(Reg.k1, Reg.a0);
             // 有且仅有一个i32的参数
             Value arg = call.getOperand(1);
             if (arg instanceof ConstData constData) {
@@ -250,7 +282,11 @@ public class Mapper extends MipsFactory {
                 makeLi(Reg.v0, 11);
             }
             makeSyscall();
+            // 恢复a0
+            makeMove(Reg.a0, Reg.k1);
         } else if (name.equals("putstr")) {
+            // 先保存a0
+            makeMove(Reg.k1, Reg.a0);
             Value arg = call.getOperand(1);
             if (arg instanceof StringLiteral) {
                 makeLa(Reg.a0, arg.getName().substring(1));
@@ -261,6 +297,8 @@ public class Mapper extends MipsFactory {
             }
             makeLi(Reg.v0, 4);
             makeSyscall();
+            // 恢复a0
+            makeMove(Reg.a0, Reg.k1);
         } else {
             /*
                 需要存什么：
@@ -539,7 +577,13 @@ public class Mapper extends MipsFactory {
         Value falseBb = branch.getOperand(2);
         String trueLabel = trueBb.getName().substring(1);
         String falseLabel = falseBb.getName().substring(1);
-        if (findReg(cond) == null) {
+        if (cond instanceof ConstData condConst) {
+            if (condConst.getValue() != 0) {
+                makeJ(trueLabel);
+            } else {
+                makeJ(falseLabel);
+            }
+        } else if (findReg(cond) == null) {
             // cond 需要往栈上找
             MemoryM m = makeLoad(cond.getType().getAlign(), Reg.k0, findOffset(cond), Reg.sp);
             m.setNote(new Note(branch));

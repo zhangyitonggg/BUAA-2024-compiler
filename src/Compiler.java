@@ -10,13 +10,16 @@ import frontend.parser.AST.CompUnit;
 import frontend.parser.Parser;
 import llvm.Module;
 import llvm.Visitor;
-import optimize.RegAlloca;
+import optimize.Mem2Reg;
+import optimize.Pre;
+import optimize.RemovePhi;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Compiler {
     private final static String inputFileName = "testfile.txt";
+    public static Module module;
     
     public static void main(String[] args) throws IOException {
         // 词法分析
@@ -36,10 +39,16 @@ public class Compiler {
             return;
         }
         // 生成中间代码
-        Module module = Visitor.getInstance().visit(compUnit);
+        module = Visitor.getInstance().visit(compUnit);
         Printer.print2llvm(module.toString());
         if (Config.optimizeFlag) {
-            RegAlloca.getInstance(module).alloca();
+            Pre.deleteDeadCode(module);
+            Pre.anaDom(module);
+            Mem2Reg.work(module);
+            Printer.print2llvm(module.toString());
+            // RegAlloca.getInstance(module).alloca();
+            RemovePhi.work(module);
+            Printer.print2llvmOpt(module.toString());
         }
         // 生成目标代码
         String mipsCode = Mapper.getInstance().map(module);

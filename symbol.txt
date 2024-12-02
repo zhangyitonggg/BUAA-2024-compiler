@@ -1,1 +1,9 @@
-2 a Int
+1 func IntFunc
+2 s1 CharArray
+2 s2 CharArray
+2 s3 CharArray
+2 s4 CharArray
+2 s5 CharArray
+2 s6 CharArray
+2 s7 CharArray
+3 s CharArray

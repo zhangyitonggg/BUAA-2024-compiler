@@ -11,7 +11,9 @@ public class Printer {
     private final static String parserFileName = "parser.txt";
     private final static String symbolFileName = "symbol.txt";
     private final static String llvmFileName = "llvm_ir.txt";
-    private final static String mipsFileName = "mips.txt";
+    private final static String llvmNoOptFileName = "llvm_ir_no_opt.txt";
+    private final static String llvmOptFileName = "llvm_ir_opt.txt";
+    public static String mipsFileName = "mips.txt";
     
     private static void print2file(String fileName, String output) {
         try (FileWriter writer = new FileWriter(fileName)) {
@@ -37,7 +39,12 @@ public class Printer {
     }
     
     public static void print2llvm(String output) {
+        print2file(llvmNoOptFileName, output);
+    }
+    
+    public static void print2llvmOpt(String output) {
         print2file(llvmFileName, output);
+        print2file(llvmOptFileName, output);
     }
     
     public static void print2mips(String output) {

@@ -2,7 +2,7 @@ package llvm.types;
 
 public class PointerIrTy extends DataIrTy {
     /**
-     * 只可能是 i8 or i32
+     * 只可能是 i8 or i32, 也可能是数组
      */
     public final IrTy deRefIrTy;
     
