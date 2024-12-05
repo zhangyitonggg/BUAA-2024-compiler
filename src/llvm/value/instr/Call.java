@@ -1,9 +1,11 @@
 package llvm.value.instr;
 
+import backend.Register.Reg;
 import llvm.value.Value;
 import llvm.value.notInstr.Function;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * 根据函数有无返回值分为两种情况:
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class Call extends Instruction {
     private final boolean hasReturnValue;
     
+    public HashSet<Reg> liveRegSet = new HashSet<>();
     /**
      * 有返回值的情况
      * @param nameCount

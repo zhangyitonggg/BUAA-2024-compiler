@@ -12,6 +12,7 @@ import llvm.Module;
 import llvm.Visitor;
 import optimize.Mem2Reg;
 import optimize.Pre;
+import optimize.RegAlloca;
 import optimize.RemovePhi;
 
 import java.io.File;
@@ -40,13 +41,14 @@ public class Compiler {
         }
         // 生成中间代码
         module = Visitor.getInstance().visit(compUnit);
-        Printer.print2llvmNoOpt(module.toString());
+        // Printer.print2llvmNoOpt(module.toString());
+        // Printer.print2mipsNoOpt(Mapper.getInstance().map(module));
         if (Config.optimizeFlag) {
             Pre.deleteDeadCode(module);
             Pre.anaDom(module);
             Mem2Reg.work(module);
             Printer.print2llvm(module.toString());
-            // RegAlloca.getInstance(module).alloca();
+            RegAlloca.getInstance(module).alloca();
             RemovePhi.work(module);
             Printer.print2llvmOpt(module.toString());
         }

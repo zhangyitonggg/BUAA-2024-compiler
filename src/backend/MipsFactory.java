@@ -69,10 +69,12 @@ public class MipsFactory {
         value2offset = new HashMap<>();
         // value2reg = new HashMap<>();
         value2reg = function.getValue2reg();
+//        System.out.println(function.getName());
 //        for (Value value : value2reg.keySet()) {
-//            System.out.println(value);
+//            System.out.print(value + "  :  ");
 //            System.out.println(value2reg.get(value));
 //        }
+//        System.out.println("-------------------------------------------------------------------------------------------");
         Label label = new Label(function.getName().substring(1));
         instrList.add(label);
     }
@@ -142,9 +144,21 @@ public class MipsFactory {
     }
     
     protected MemoryM makeStore(int align, Reg src, int imme, Reg base) {
+
+        
         if (align == 1) {
             Sb sb = new Sb(src, imme, base);
             instrList.add(sb);
+            
+            if (src == Reg.v1 && imme == -24) {
+                for (Value v : value2reg.keySet()) {
+                    if (Reg.v1 == value2reg.get(v)) {
+                        System.out.print(align + "  ");
+                        System.out.println(v);
+                    }
+                }
+                System.out.println(instrList.get(instrList.size()-3));
+            }
             return sb;
         } else {
             Sw sw = new Sw(src, imme, base);

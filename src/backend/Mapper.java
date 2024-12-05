@@ -1,5 +1,6 @@
 package backend;
 
+import Utils.Config;
 import backend.Instruction.assign.Li;
 import backend.Instruction.branch.Beq;
 import backend.Instruction.jump.J;
@@ -16,7 +17,9 @@ import llvm.value.instr.*;
 import llvm.value.notInstr.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.stream.StreamSupport;
 
 /**
  * 第一个char四字节对齐，也就是说只有连续的char数组其中的从第二个元素到最后一个元素没有四字节对齐要求
@@ -76,6 +79,7 @@ public class Mapper extends MipsFactory {
         }
         // 为所有指令分配寄存器或者压栈，当然，目前只有压栈
         for (Instruction instruction : function.getAllInstr()) {
+            // System.out.println(instruction);
             if (instruction instanceof Copy copy && findOffset(copy.getTarget()) == null && findReg(copy.getTarget()) == null) {
                 int byteNum = copy.getTarget().getType().getByte();
                 subAlign(byteNum, 4);
@@ -306,11 +310,33 @@ public class Mapper extends MipsFactory {
                 2. ra寄存器
              */
             ArrayList<Reg> usedReg = new ArrayList<>(value2reg.values());
+            if (Config.optimizeFlag) {
+                HashSet<Reg> tmpRegs = call.liveRegSet;
+                usedReg = new ArrayList<>();
+                for (Reg r : tmpRegs) {
+                    usedReg.add(r);
+                }
+                for(Reg r : value2reg.values()){
+                    if (r == Reg.a0 | r == Reg.a1 | r == Reg.a2 | r == Reg.a3) {
+                        if (!tmpRegs.contains(r)) {
+                            usedReg.add(r);
+                        }
+                    }
+                }
+//                if (tmpRegs.contains(Reg.v1)) {
+//                    for (Value v : value2reg.keySet()) {
+//                        if (Reg.v1 == value2reg.get(v) && function.getName().equals("@calculate")) {
+//                            System.out.println(v);
+//                        }
+//                    }
+//                }
+            }
             // 搞明白存啥了，接下来就存就行了
             for (int iter = 0; iter < usedReg.size(); iter += 1) {
                 int offset = curOffset - 4 * (iter + 1);
                 Reg src = usedReg.get(iter);
-                makeStore(findValueWithReg(src).getType().getAlign(), src, offset, Reg.sp);
+                // makeStore(findValueWithReg(src).getType().getAlign(), src, offset, Reg.sp);
+                makeStore(4, src, offset, Reg.sp);
             }
             // 算是一个特例吧，地址当然是4字节的
             makeStore(4, Reg.ra, curOffset - usedReg.size() * 4 - 4, Reg.sp);
@@ -339,7 +365,8 @@ public class Mapper extends MipsFactory {
                             } else if (index <= 7 && index >= 4 && index < i + 4) {
                                 // 这对应的要写入a1，但是需要从a0取值的情况
                                 int offset = curOffset - (usedReg.indexOf(from) + 1) * 4;
-                                makeLoad(findValueWithReg(from).getType().getAlign(), Reg.getArgReg(i), offset, Reg.sp);
+                                // makeLoad(findValueWithReg(from).getType().getAlign(), Reg.getArgReg(i), offset, Reg.sp);
+                                makeLoad(4, Reg.getArgReg(i), offset, Reg.sp);
                             } else {
                                 // 这种情况下可以直接用move
                                 makeMove(Reg.getArgReg(i), from);
@@ -366,7 +393,8 @@ public class Mapper extends MipsFactory {
                             if (index <= 7 && index >= 4) {
                                 // 是ax寄存器，已经覆盖了
                                 int loadOffset = curOffset - (usedReg.indexOf(from) + 1) * 4;
-                                makeLoad(findValueWithReg(from).getType().getAlign(), Reg.k0, loadOffset, Reg.sp);
+                                // makeLoad(findValueWithReg(from).getType().getAlign(), Reg.k0, loadOffset, Reg.sp);
+                                makeLoad(4, Reg.k0, loadOffset, Reg.sp);
                                 makeStore(rParam.getType().getAlign(), Reg.k0, offset, Reg.sp);
                             } else {
                                 makeStore(rParam.getType().getAlign(), from, offset, Reg.sp);
@@ -398,7 +426,8 @@ public class Mapper extends MipsFactory {
             for (int iter = 0; iter < usedReg.size(); iter+=1) {
                 int offset = curOffset - 4 * (iter + 1);
                 Reg dst = usedReg.get(iter);
-                makeLoad(findValueWithReg(dst).getType().getAlign(), dst, offset, Reg.sp);
+                // makeLoad(findValueWithReg(dst).getType().getAlign(), dst, offset, Reg.sp);
+                makeLoad(4, dst, offset, Reg.sp);
             }
             // 处理返回值
             // 应当在回复寄存器后再处理返回值，否则可能会被覆盖
@@ -477,6 +506,7 @@ public class Mapper extends MipsFactory {
             leftReg = findReg(leftValue);
         } else {
             // 理论上来说一定是i32，因为只有i32有资格参与计算
+            // System.out.println(leftValue);
             makeLoad(leftValue.getType().getAlign(), leftReg, findOffset(leftValue), Reg.sp);
         }
         if (rightValue instanceof ConstData rightValueConst) {

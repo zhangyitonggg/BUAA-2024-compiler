@@ -1,28 +1,95 @@
-int getIndex(int arr[], int index) {
-    return arr[index];
+//#include <stdio.h>
+
+const int MAX_SIZE = 10;
+int global_var;
+char str[10] = {'3', '\''};
+
+int add(int a, int b) {
+    return a + b;
 }
 
-int setIndex(int arr[], int index, int val) {
-    int temp = arr[index];
-    arr[index] = val;
-    return temp;
+int calculate(int a, int b[]) {
+    int res = add(a, b[0]) * (a - b[1]) / (b[2]) % a - (-(-(-3))) + (+ - + -6);
+    if (res <= 5) {
+        return 1;
+    } else {
+        return 0;
+    }
+    return -1;
 }
+
+void printName() {
+    global_var = global_var + 1;
+    if (global_var != 0) {
+        printf("22373040\n");
+    }
+    return;
+}
+
+void print(char ch) {
+    printf("%c\n", ch);
+}
+
+char get_first(char str[]) {
+    return str[0];
+}
+
 
 int main() {
-    int arr1[5] = {0, 1, 2, 3, 4};
-    int arr2[5] = {0, 0, 0, 0, 0};
-    printf("%d\n", setIndex(arr2, 0, getIndex(arr1, 0) + 0));
-    printf("%d\n", setIndex(arr2, 1, getIndex(arr1, 1) + 1));
-    printf("%d\n", setIndex(arr2, 2, getIndex(arr1, 2) + 2));
-    printf("%d\n", setIndex(arr2, 3, getIndex(arr1, 3) + 3));
-    printf("%d\n", setIndex(arr2, 4, getIndex(arr1, 4) + 4));
+//    freopen("a.in", "r", stdin);
+//    freopen("a.out", "w", stdout);
+    printName();
 
-    printf("%d\n", getIndex(arr2, 0));
-    printf("%d\n", getIndex(arr2, 1));
-    printf("%d\n", getIndex(arr2, 2));
-    printf("%d\n", getIndex(arr2, 3));
-    printf("%d\n", getIndex(arr2, 4));
+    int i = 0, ii = 8;
+    char c;
+
+    i = 5;
+    c = 's';
+
+
+    const int local_const = 5;
+    int arr[10];
+    char str[12] = "qwertyuiop\n";
+    const char _str[10] = "str";
+
+    for (i = 0; i < MAX_SIZE; i = i + 1) {
+        arr[i] = i;
+        if (i == 4 && i < c || i >= 9) {
+            printf("i is 4 or 9!\n");
+            int j;
+            for (j = 1;; j = j + j) {
+                if (j > 100) {
+                    break;
+                } else if (j != 32) {
+                    continue;
+                }
+                printf("j is 32!\n");
+            }
+        }
+        if (i % 2 == 0) {
+            for (;;) {
+                break;
+            }
+        } else {
+        }
+    }
+
+    {
+        const int arr[20] = {3, 2, 1};
+        int sum = 0, i = 0;
+        {
+            for (; i < MAX_SIZE; i = i + 1) {
+                if (i < 3) {
+                    sum = sum + arr[i];
+                }
+            }
+        }
+        printf("Sum of array elements: %d\n", sum);
+    }
+
+    if (!calculate(i, arr)) {
+        print(get_first(str));
+    }
 
     return 0;
 }
-

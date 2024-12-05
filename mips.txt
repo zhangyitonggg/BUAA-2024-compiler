@@ -1,616 +1,781 @@
 # by zyt 22373337
 .data
 
+g_global_var :.space 4
 
+g_str :.byte 51, 39, 0, 0, 0, 0, 0, 0, 0, 0
 
-str.0 : .asciiz "\n"
+str.0 : .asciiz "22373040\n"
+str.1 : .asciiz "\n"
+str.2 : .asciiz "i is 4 or 9!\n"
+str.3 : .asciiz "j is 32!\n"
+str.4 : .asciiz "Sum of array elements: "
 
 
 .text
 main:
-b21:
-   # %v28 = alloca [5 x i32]
-    li $k0, -248
+b63:
+   # %v154 = alloca [20 x i32]
+    li $k0, -100
     addu $k0, $sp, $k0
     sw $k0, -4($sp)
-   # %v22 = alloca [5 x i32]
-    li $k0, -268
+   # %v83 = alloca [10 x i8]
+    li $k0, -112
     addu $k0, $sp, $k0
     sw $k0, -8($sp)
-   # %v23 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
-    lw $k0, -8($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
+   # %v70 = alloca [12 x i8]
+    li $k0, -124
+    addu $k0, $sp, $k0
     sw $k0, -12($sp)
-   # store i32 0, i32* %v23
-    lw $k1, -12($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v24 = getelementptr inbounds i32, i32* %v23, i32 1
-    lw $k0, -12($sp)
-    li $k1, 4
-    addu $k0, $k0, $k1
+   # %v69 = alloca [10 x i32]
+    li $k0, -164
+    addu $k0, $sp, $k0
     sw $k0, -16($sp)
-   # store i32 1, i32* %v24
-    lw $k1, -16($sp)
-    li $k0, 1
-    sw $k0, 0($k1)
-   # %v25 = getelementptr inbounds i32, i32* %v23, i32 2
-    lw $k0, -12($sp)
-    li $k1, 8
-    addu $k0, $k0, $k1
-    sw $k0, -20($sp)
-   # store i32 2, i32* %v25
-    lw $k1, -20($sp)
-    li $k0, 2
-    sw $k0, 0($k1)
-   # %v26 = getelementptr inbounds i32, i32* %v23, i32 3
-    lw $k0, -12($sp)
-    li $k1, 12
-    addu $k0, $k0, $k1
-    sw $k0, -24($sp)
-   # store i32 3, i32* %v26
-    lw $k1, -24($sp)
-    li $k0, 3
-    sw $k0, 0($k1)
-   # %v27 = getelementptr inbounds i32, i32* %v23, i32 4
-    lw $k0, -12($sp)
-    li $k1, 16
-    addu $k0, $k0, $k1
-    sw $k0, -28($sp)
-   # store i32 4, i32* %v27
-    lw $k1, -28($sp)
-    li $k0, 4
-    sw $k0, 0($k1)
-   # %v29 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -32($sp)
-   # store i32 0, i32* %v29
-    lw $k1, -32($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v30 = getelementptr inbounds i32, i32* %v29, i32 1
-    lw $k0, -32($sp)
-    li $k1, 4
-    addu $k0, $k0, $k1
-    sw $k0, -36($sp)
-   # store i32 0, i32* %v30
-    lw $k1, -36($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v31 = getelementptr inbounds i32, i32* %v29, i32 2
-    lw $k0, -32($sp)
-    li $k1, 8
-    addu $k0, $k0, $k1
-    sw $k0, -40($sp)
-   # store i32 0, i32* %v31
-    lw $k1, -40($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v32 = getelementptr inbounds i32, i32* %v29, i32 3
-    lw $k0, -32($sp)
-    li $k1, 12
-    addu $k0, $k0, $k1
-    sw $k0, -44($sp)
-   # store i32 0, i32* %v32
-    lw $k1, -44($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v33 = getelementptr inbounds i32, i32* %v29, i32 4
-    lw $k0, -32($sp)
-    li $k1, 16
-    addu $k0, $k0, $k1
-    sw $k0, -48($sp)
-   # store i32 0, i32* %v33
-    lw $k1, -48($sp)
-    li $k0, 0
-    sw $k0, 0($k1)
-   # %v34 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -52($sp)
-   # %v35 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
-    lw $k0, -8($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -56($sp)
-   # %v36 = call i32 @getIndex(i32*  %v35, i32  0)
-    sw $ra, -272($sp)
-    lw $a0, -56($sp)
-    li $a1, 0
-    li $k0, -272
+   # call void @printName()
+    sw $gp, -168($sp)
+    sw $fp, -172($sp)
+    sw $v1, -176($sp)
+    sw $t0, -180($sp)
+    sw $ra, -184($sp)
+    li $k0, -184
     addu $sp, $sp, $k0
-    jal getIndex
+    jal printName
     lw $ra, 0($sp)
-    li $k0, 272
+    li $k0, 184
     addu $sp, $sp, $k0
-    sw $v0, -60($sp)
-    lw $k0, -60($sp)
+    lw $gp, -168($sp)
+    lw $fp, -172($sp)
+    lw $v1, -176($sp)
+    lw $t0, -180($sp)
+   # %v67 = zext i8 115 to i32
+    li $k0, 115
+    move $v1, $k0
+   # %v71 = getelementptr inbounds [12 x i8], [12 x i8]* %v70, i32 0, i32 0
+    lw $k0, -12($sp)
     li $k1, 0
-   # %v37 = add i32 %v36, 0
-    addu $k0, $k0, $k1
-    sw $k0, -64($sp)
-   # %v38 = call i32 @setIndex(i32*  %v34, i32  0, i32  %v37)
-    sw $ra, -272($sp)
-    lw $a0, -52($sp)
-    li $a1, 0
-    lw $a2, -64($sp)
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal setIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -68($sp)
-   # call void @putint(i32  %v38)
-    move $k1, $a0
-    lw $a0, -68($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v39 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -72($sp)
-   # call void @putstr(i8*  %v39)
-    move $k1, $a0
-    lw $a0, -72($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v40 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -76($sp)
-   # %v41 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
-    lw $k0, -8($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -80($sp)
-   # %v42 = call i32 @getIndex(i32*  %v41, i32  1)
-    sw $ra, -272($sp)
-    lw $a0, -80($sp)
-    li $a1, 1
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -84($sp)
-    lw $k0, -84($sp)
+    addu $gp, $k0, $k1
+   # store i8 113, i8* %v71
+    li $k0, 113
+    sb $k0, 0($gp)
+   # %v72 = getelementptr inbounds i8, i8* %v71, i32 1
     li $k1, 1
-   # %v43 = add i32 %v42, 1
-    addu $k0, $k0, $k1
-    sw $k0, -88($sp)
-   # %v44 = call i32 @setIndex(i32*  %v40, i32  1, i32  %v43)
-    sw $ra, -272($sp)
-    lw $a0, -76($sp)
-    li $a1, 1
-    lw $a2, -88($sp)
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal setIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -92($sp)
-   # call void @putint(i32  %v44)
-    move $k1, $a0
-    lw $a0, -92($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v45 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -96($sp)
-   # call void @putstr(i8*  %v45)
-    move $k1, $a0
-    lw $a0, -96($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v46 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -100($sp)
-   # %v47 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
-    lw $k0, -8($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -104($sp)
-   # %v48 = call i32 @getIndex(i32*  %v47, i32  2)
-    sw $ra, -272($sp)
-    lw $a0, -104($sp)
-    li $a1, 2
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -108($sp)
-    lw $k0, -108($sp)
+    addu $fp, $gp, $k1
+   # store i8 119, i8* %v72
+    li $k0, 119
+    sb $k0, 0($fp)
+   # %v73 = getelementptr inbounds i8, i8* %v71, i32 2
     li $k1, 2
-   # %v49 = add i32 %v48, 2
-    addu $k0, $k0, $k1
-    sw $k0, -112($sp)
-   # %v50 = call i32 @setIndex(i32*  %v46, i32  2, i32  %v49)
-    sw $ra, -272($sp)
-    lw $a0, -100($sp)
-    li $a1, 2
-    lw $a2, -112($sp)
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal setIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -116($sp)
-   # call void @putint(i32  %v50)
-    move $k1, $a0
-    lw $a0, -116($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v51 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -120($sp)
-   # call void @putstr(i8*  %v51)
-    move $k1, $a0
-    lw $a0, -120($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v52 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -124($sp)
-   # %v53 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
-    lw $k0, -8($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -128($sp)
-   # %v54 = call i32 @getIndex(i32*  %v53, i32  3)
-    sw $ra, -272($sp)
-    lw $a0, -128($sp)
-    li $a1, 3
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -132($sp)
-    lw $k0, -132($sp)
+    addu $fp, $gp, $k1
+   # store i8 101, i8* %v73
+    li $k0, 101
+    sb $k0, 0($fp)
+   # %v74 = getelementptr inbounds i8, i8* %v71, i32 3
     li $k1, 3
-   # %v55 = add i32 %v54, 3
-    addu $k0, $k0, $k1
-    sw $k0, -136($sp)
-   # %v56 = call i32 @setIndex(i32*  %v52, i32  3, i32  %v55)
-    sw $ra, -272($sp)
-    lw $a0, -124($sp)
-    li $a1, 3
-    lw $a2, -136($sp)
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal setIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -140($sp)
-   # call void @putint(i32  %v56)
-    move $k1, $a0
-    lw $a0, -140($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v57 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -144($sp)
-   # call void @putstr(i8*  %v57)
-    move $k1, $a0
-    lw $a0, -144($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v58 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -148($sp)
-   # %v59 = getelementptr inbounds [5 x i32], [5 x i32]* %v22, i32 0, i32 0
+    addu $fp, $gp, $k1
+   # store i8 114, i8* %v74
+    li $k0, 114
+    sb $k0, 0($fp)
+   # %v75 = getelementptr inbounds i8, i8* %v71, i32 4
+    li $k1, 4
+    addu $fp, $gp, $k1
+   # store i8 116, i8* %v75
+    li $k0, 116
+    sb $k0, 0($fp)
+   # %v76 = getelementptr inbounds i8, i8* %v71, i32 5
+    li $k1, 5
+    addu $fp, $gp, $k1
+   # store i8 121, i8* %v76
+    li $k0, 121
+    sb $k0, 0($fp)
+   # %v77 = getelementptr inbounds i8, i8* %v71, i32 6
+    li $k1, 6
+    addu $fp, $gp, $k1
+   # store i8 117, i8* %v77
+    li $k0, 117
+    sb $k0, 0($fp)
+   # %v78 = getelementptr inbounds i8, i8* %v71, i32 7
+    li $k1, 7
+    addu $fp, $gp, $k1
+   # store i8 105, i8* %v78
+    li $k0, 105
+    sb $k0, 0($fp)
+   # %v79 = getelementptr inbounds i8, i8* %v71, i32 8
+    li $k1, 8
+    addu $fp, $gp, $k1
+   # store i8 111, i8* %v79
+    li $k0, 111
+    sb $k0, 0($fp)
+   # %v80 = getelementptr inbounds i8, i8* %v71, i32 9
+    li $k1, 9
+    addu $fp, $gp, $k1
+   # store i8 112, i8* %v80
+    li $k0, 112
+    sb $k0, 0($fp)
+   # %v81 = getelementptr inbounds i8, i8* %v71, i32 10
+    li $k1, 10
+    addu $fp, $gp, $k1
+   # store i8 10, i8* %v81
+    li $k0, 10
+    sb $k0, 0($fp)
+   # %v82 = getelementptr inbounds i8, i8* %v71, i32 11
+    li $k1, 11
+    addu $gp, $gp, $k1
+   # store i8 0, i8* %v82
+    li $k0, 0
+    sb $k0, 0($gp)
+   # %v84 = getelementptr inbounds [10 x i8], [10 x i8]* %v83, i32 0, i32 0
     lw $k0, -8($sp)
     li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -152($sp)
-   # %v60 = call i32 @getIndex(i32*  %v59, i32  4)
-    sw $ra, -272($sp)
-    lw $a0, -152($sp)
-    li $a1, 4
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -156($sp)
-    lw $k0, -156($sp)
+    addu $gp, $k0, $k1
+   # store i8 115, i8* %v84
+    li $k0, 115
+    sb $k0, 0($gp)
+   # %v85 = getelementptr inbounds i8, i8* %v84, i32 1
+    li $k1, 1
+    addu $fp, $gp, $k1
+   # store i8 116, i8* %v85
+    li $k0, 116
+    sb $k0, 0($fp)
+   # %v86 = getelementptr inbounds i8, i8* %v84, i32 2
+    li $k1, 2
+    addu $fp, $gp, $k1
+   # store i8 114, i8* %v86
+    li $k0, 114
+    sb $k0, 0($fp)
+   # %v87 = getelementptr inbounds i8, i8* %v84, i32 3
+    li $k1, 3
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v87
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v88 = getelementptr inbounds i8, i8* %v84, i32 4
     li $k1, 4
-   # %v61 = add i32 %v60, 4
-    addu $k0, $k0, $k1
-    sw $k0, -160($sp)
-   # %v62 = call i32 @setIndex(i32*  %v58, i32  4, i32  %v61)
-    sw $ra, -272($sp)
-    lw $a0, -148($sp)
-    li $a1, 4
-    lw $a2, -160($sp)
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal setIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -164($sp)
-   # call void @putint(i32  %v62)
-    move $k1, $a0
-    lw $a0, -164($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v63 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v88
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v89 = getelementptr inbounds i8, i8* %v84, i32 5
+    li $k1, 5
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v89
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v90 = getelementptr inbounds i8, i8* %v84, i32 6
+    li $k1, 6
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v90
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v91 = getelementptr inbounds i8, i8* %v84, i32 7
+    li $k1, 7
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v91
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v92 = getelementptr inbounds i8, i8* %v84, i32 8
+    li $k1, 8
+    addu $fp, $gp, $k1
+   # store i8 0, i8* %v92
+    li $k0, 0
+    sb $k0, 0($fp)
+   # %v93 = getelementptr inbounds i8, i8* %v84, i32 9
+    li $k1, 9
+    addu $gp, $gp, $k1
+   # store i8 0, i8* %v93
+    li $k0, 0
+    sb $k0, 0($gp)
+    li $gp, 0
+   # br label %b94
+    j b94
+b94:
+   # %v99 = icmp slt i32 %p6, 10
+    li $k1, 10
+    slt $t0, $gp, $k1
+   # %v101 = icmp ne i32 %v100, 0
     li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -168($sp)
-   # call void @putstr(i8*  %v63)
-    move $k1, $a0
-    lw $a0, -168($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v64 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
+    sne $t0, $t0, $k1
+   # br i1 %v101, label %b96, label %b97
+    beq $t0, $zero, b97
+    j b96
+b95:
+    li $k1, 1
+   # %v103 = add i32 %p6, 1
+    addu $gp, $gp, $k1
+    move $gp, $gp
+    move $fp, $t0
+   # br label %b94
+    j b94
+b96:
+   # %v105 = getelementptr inbounds [10 x i32], [10 x i32]* %v69, i32 0, i32 %p6
+    lw $k0, -16($sp)
+    sll $k1, $gp, 2
+    addu $t0, $k0, $k1
+   # store i32 %p6, i32* %v105
+    sw $gp, 0($t0)
+   # %v111 = icmp eq i32 %p6, 4
+    li $k1, 4
+    seq $t0, $gp, $k1
+   # br i1 %v111, label %b112, label %b109
+    beq $t0, $zero, b109
+    j b112
+b97:
+   # %v155 = getelementptr inbounds [20 x i32], [20 x i32]* %v154, i32 0, i32 0
     lw $k0, -4($sp)
     li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -172($sp)
-   # %v65 = call i32 @getIndex(i32*  %v64, i32  0)
-    sw $ra, -272($sp)
-    lw $a0, -172($sp)
-    li $a1, 0
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -176($sp)
-   # call void @putint(i32  %v65)
-    move $k1, $a0
-    lw $a0, -176($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v66 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
+    addu $v1, $k0, $k1
+   # store i32 3, i32* %v155
+    li $k0, 3
+    sw $k0, 0($v1)
+   # %v156 = getelementptr inbounds i32, i32* %v155, i32 1
+    li $k1, 4
+    addu $fp, $v1, $k1
+   # store i32 2, i32* %v156
+    li $k0, 2
+    sw $k0, 0($fp)
+   # %v157 = getelementptr inbounds i32, i32* %v155, i32 2
+    li $k1, 8
+    addu $fp, $v1, $k1
+   # store i32 1, i32* %v157
+    li $k0, 1
+    sw $k0, 0($fp)
+   # %v158 = getelementptr inbounds i32, i32* %v155, i32 3
+    li $k1, 12
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v158
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v159 = getelementptr inbounds i32, i32* %v155, i32 4
+    li $k1, 16
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v159
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v160 = getelementptr inbounds i32, i32* %v155, i32 5
+    li $k1, 20
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v160
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v161 = getelementptr inbounds i32, i32* %v155, i32 6
+    li $k1, 24
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v161
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v162 = getelementptr inbounds i32, i32* %v155, i32 7
+    li $k1, 28
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v162
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v163 = getelementptr inbounds i32, i32* %v155, i32 8
+    li $k1, 32
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v163
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v164 = getelementptr inbounds i32, i32* %v155, i32 9
+    li $k1, 36
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v164
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v165 = getelementptr inbounds i32, i32* %v155, i32 10
+    li $k1, 40
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v165
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v166 = getelementptr inbounds i32, i32* %v155, i32 11
+    li $k1, 44
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v166
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v167 = getelementptr inbounds i32, i32* %v155, i32 12
+    li $k1, 48
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v167
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v168 = getelementptr inbounds i32, i32* %v155, i32 13
+    li $k1, 52
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v168
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v169 = getelementptr inbounds i32, i32* %v155, i32 14
+    li $k1, 56
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v169
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v170 = getelementptr inbounds i32, i32* %v155, i32 15
+    li $k1, 60
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v170
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v171 = getelementptr inbounds i32, i32* %v155, i32 16
+    li $k1, 64
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v171
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v172 = getelementptr inbounds i32, i32* %v155, i32 17
+    li $k1, 68
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v172
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v173 = getelementptr inbounds i32, i32* %v155, i32 18
+    li $k1, 72
+    addu $fp, $v1, $k1
+   # store i32 0, i32* %v173
+    li $k0, 0
+    sw $k0, 0($fp)
+   # %v174 = getelementptr inbounds i32, i32* %v155, i32 19
+    li $k1, 76
+    addu $v1, $v1, $k1
+   # store i32 0, i32* %v174
+    li $k0, 0
+    sw $k0, 0($v1)
+    li $v1, 0
+    li $fp, 0
+   # br label %b177
+    j b177
+b107:
+   # %v123 = getelementptr inbounds [14 x i8], [14 x i8]* @str.2, i32 0, i32 0
+    la $k0, str.2
     li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -180($sp)
-   # call void @putstr(i8*  %v66)
+    addu $t0, $k0, $k1
+   # call void @putstr(i8*  %v123)
     move $k1, $a0
-    lw $a0, -180($sp)
+    move $a0, $t0
     li $v0, 4
     syscall
     move $a0, $k1
-   # %v67 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
+    li $t0, 1
+   # br label %b125
+    j b125
+b213:
+    move $t0, $fp
+   # br label %b108
+    j b108
+b108:
+    li $k1, 2
+   # %v148 = srem i32 %p6, 2
+    div $gp, $k1
+    mfhi $t1
+   # %v149 = icmp eq i32 %v148, 0
+    li $k1, 0
+    seq $t1, $t1, $k1
+   # br i1 %v149, label %b144, label %b145
+    beq $t1, $zero, b145
+    j b144
+b109:
+   # %v120 = icmp sge i32 %p6, 9
+    li $k1, 9
+    sge $t0, $gp, $k1
+   # %v122 = icmp ne i32 %v121, 0
+    li $k1, 0
+    sne $t0, $t0, $k1
+   # br i1 %v122, label %b107, label %b213
+    beq $t0, $zero, b213
+    j b107
+b112:
+   # %v115 = zext i8 %v68 to i32
+    move $t0, $v1
+   # %v116 = icmp slt i32 %p6, %v115
+    slt $t0, $gp, $t0
+   # %v118 = icmp ne i32 %v117, 0
+    li $k1, 0
+    sne $t0, $t0, $k1
+   # br i1 %v118, label %b107, label %b109
+    beq $t0, $zero, b109
+    j b107
+b125:
+   # br label %b127
+    j b127
+b126:
+   # %v131 = add i32 %p4, %p4
+    addu $t0, $t0, $t0
+    move $t0, $t0
+   # br label %b125
+    j b125
+b127:
+   # %v136 = icmp sgt i32 %p4, 100
+    li $k1, 100
+    sgt $t1, $t0, $k1
+   # %v138 = icmp ne i32 %v137, 0
+    li $k1, 0
+    sne $t1, $t1, $k1
+   # br i1 %v138, label %b132, label %b133
+    beq $t1, $zero, b133
+    j b132
+b128:
+    move $t0, $t0
+   # br label %b108
+    j b108
+b132:
+    j b128
+b133:
+   # %v142 = icmp ne i32 %p4, 32
+    li $k1, 32
+    sne $t1, $t0, $k1
+   # br i1 %v142, label %b139, label %b140
+    beq $t1, $zero, b140
+    j b139
+b134:
+   # %v143 = getelementptr inbounds [10 x i8], [10 x i8]* @str.3, i32 0, i32 0
+    la $k0, str.3
+    li $k1, 0
+    addu $t1, $k0, $k1
+   # call void @putstr(i8*  %v143)
+    move $k1, $a0
+    move $a0, $t1
+    li $v0, 4
+    syscall
+    move $a0, $k1
+   # br label %b126
+    j b126
+b139:
+    j b126
+b140:
+   # br label %b134
+    j b134
+b144:
+   # br label %b150
+    j b150
+b145:
+   # br label %b146
+    j b146
+b146:
+   # br label %b95
+    j b95
+b150:
+   # br label %b152
+    j b152
+b151:
+   # br label %b150
+    j b150
+b152:
+    j b153
+b153:
+   # br label %b146
+    j b146
+b177:
+   # %v182 = icmp slt i32 %p0, 10
+    li $k1, 10
+    slt $t0, $fp, $k1
+   # %v184 = icmp ne i32 %v183, 0
+    li $k1, 0
+    sne $t0, $t0, $k1
+   # br i1 %v184, label %b179, label %b180
+    beq $t0, $zero, b180
+    j b179
+b178:
+    li $k1, 1
+   # %v186 = add i32 %p0, 1
+    addu $v1, $fp, $k1
+    move $k0, $v1
+    sw $k0, -20($sp)
+    move $v1, $t0
+    lw $fp, -20($sp)
+   # br label %b177
+    j b177
+b179:
+   # %v190 = icmp slt i32 %p0, 3
+    li $k1, 3
+    slt $t0, $fp, $k1
+   # %v192 = icmp ne i32 %v191, 0
+    li $k1, 0
+    sne $t0, $t0, $k1
+   # br i1 %v192, label %b187, label %b214
+    beq $t0, $zero, b214
+    j b187
+b180:
+   # %v199 = getelementptr inbounds [24 x i8], [24 x i8]* @str.4, i32 0, i32 0
+    la $k0, str.4
+    li $k1, 0
+    addu $fp, $k0, $k1
+   # call void @putstr(i8*  %v199)
+    move $k1, $a0
+    move $a0, $fp
+    li $v0, 4
+    syscall
+    move $a0, $k1
+   # call void @putint(i32  %p2)
+    move $k1, $a0
+    move $a0, $v1
+    li $v0, 1
+    syscall
+    move $a0, $k1
+   # %v200 = getelementptr inbounds [2 x i8], [2 x i8]* @str.1, i32 0, i32 0
+    la $k0, str.1
+    li $k1, 0
+    addu $v1, $k0, $k1
+   # call void @putstr(i8*  %v200)
+    move $k1, $a0
+    move $a0, $v1
+    li $v0, 4
+    syscall
+    move $a0, $k1
+   # %v204 = getelementptr inbounds [10 x i32], [10 x i32]* %v69, i32 0, i32 0
+    lw $k0, -16($sp)
+    li $k1, 0
+    addu $v1, $k0, $k1
+   # %v205 = call i32 @calculate(i32  %p6, i32*  %v204)
+    sw $v1, -168($sp)
+    sw $ra, -172($sp)
+    move $a0, $gp
+    move $a1, $v1
+    li $k0, -172
+    addu $sp, $sp, $k0
+    jal calculate
+    lw $ra, 0($sp)
+    li $k0, 172
+    addu $sp, $sp, $k0
+    lw $v1, -168($sp)
+    move $v1, $v0
+   # %v206 = icmp eq i32 %v205, 0
+    li $k1, 0
+    seq $v1, $v1, $k1
+   # %v208 = icmp ne i32 %v207, 0
+    li $k1, 0
+    sne $v1, $v1, $k1
+   # br i1 %v208, label %b201, label %b202
+    beq $v1, $zero, b202
+    j b201
+b187:
+   # %v195 = getelementptr inbounds [20 x i32], [20 x i32]* %v154, i32 0, i32 %p0
     lw $k0, -4($sp)
+    sll $k1, $fp, 2
+    addu $t0, $k0, $k1
+   # %v196 = load i32, i32* %v195
+    lw $t0, 0($t0)
+   # %v197 = add i32 %p2, %v196
+    addu $t0, $v1, $t0
+    move $t0, $t0
+   # br label %b188
+    j b188
+b214:
+    move $t0, $v1
+   # br label %b188
+    j b188
+b188:
+   # br label %b178
+    j b178
+b201:
+   # %v209 = getelementptr inbounds [12 x i8], [12 x i8]* %v70, i32 0, i32 0
+    lw $k0, -12($sp)
     li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -184($sp)
-   # %v68 = call i32 @getIndex(i32*  %v67, i32  1)
-    sw $ra, -272($sp)
-    lw $a0, -184($sp)
-    li $a1, 1
-    li $k0, -272
+    addu $v1, $k0, $k1
+   # %v210 = call i8 @get_first(i8*  %v209)
+    sw $v1, -168($sp)
+    sw $ra, -172($sp)
+    move $a0, $v1
+    li $k0, -172
     addu $sp, $sp, $k0
-    jal getIndex
+    jal get_first
     lw $ra, 0($sp)
-    li $k0, 272
+    li $k0, 172
     addu $sp, $sp, $k0
-    sw $v0, -188($sp)
-   # call void @putint(i32  %v68)
-    move $k1, $a0
-    lw $a0, -188($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v69 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -192($sp)
-   # call void @putstr(i8*  %v69)
-    move $k1, $a0
-    lw $a0, -192($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v70 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -196($sp)
-   # %v71 = call i32 @getIndex(i32*  %v70, i32  2)
-    sw $ra, -272($sp)
-    lw $a0, -196($sp)
-    li $a1, 2
-    li $k0, -272
+    lw $v1, -168($sp)
+    move $v1, $v0
+   # call void @print(i8  %v212)
+    sw $ra, -168($sp)
+    move $a0, $v1
+    li $k0, -168
     addu $sp, $sp, $k0
-    jal getIndex
+    jal print
     lw $ra, 0($sp)
-    li $k0, 272
+    li $k0, 168
     addu $sp, $sp, $k0
-    sw $v0, -200($sp)
-   # call void @putint(i32  %v71)
-    move $k1, $a0
-    lw $a0, -200($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v72 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -204($sp)
-   # call void @putstr(i8*  %v72)
-    move $k1, $a0
-    lw $a0, -204($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v73 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -208($sp)
-   # %v74 = call i32 @getIndex(i32*  %v73, i32  3)
-    sw $ra, -272($sp)
-    lw $a0, -208($sp)
-    li $a1, 3
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -212($sp)
-   # call void @putint(i32  %v74)
-    move $k1, $a0
-    lw $a0, -212($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v75 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -216($sp)
-   # call void @putstr(i8*  %v75)
-    move $k1, $a0
-    lw $a0, -216($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
-   # %v76 = getelementptr inbounds [5 x i32], [5 x i32]* %v28, i32 0, i32 0
-    lw $k0, -4($sp)
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -220($sp)
-   # %v77 = call i32 @getIndex(i32*  %v76, i32  4)
-    sw $ra, -272($sp)
-    lw $a0, -220($sp)
-    li $a1, 4
-    li $k0, -272
-    addu $sp, $sp, $k0
-    jal getIndex
-    lw $ra, 0($sp)
-    li $k0, 272
-    addu $sp, $sp, $k0
-    sw $v0, -224($sp)
-   # call void @putint(i32  %v77)
-    move $k1, $a0
-    lw $a0, -224($sp)
-    li $v0, 1
-    syscall
-    move $a0, $k1
-   # %v78 = getelementptr inbounds [2 x i8], [2 x i8]* @str.0, i32 0, i32 0
-    la $k0, str.0
-    li $k1, 0
-    addu $k0, $k0, $k1
-    sw $k0, -228($sp)
-   # call void @putstr(i8*  %v78)
-    move $k1, $a0
-    lw $a0, -228($sp)
-    li $v0, 4
-    syscall
-    move $a0, $k1
+   # br label %b202
+    j b202
+b202:
    # ret i32 0
     li $v0, 10
     syscall
-getIndex:
+add:
 b0:
-   # %v1 = alloca i32*
-    li $k0, -28
-    addu $k0, $sp, $k0
-    sw $k0, -12($sp)
-   # store i32* %a0, i32** %v1
-    lw $k1, -12($sp)
-    sw $a0, 0($k1)
-   # %v3 = load i32*, i32** %v1
-    lw $k0, -12($sp)
-    lw $k0, 0($k0)
-    sw $k0, -16($sp)
-   # %v5 = getelementptr inbounds i32, i32* %v3, i32 %a1
-    lw $k0, -16($sp)
-    sll $k1, $a1, 2
-    addu $k0, $k0, $k1
-    sw $k0, -20($sp)
-   # %v6 = load i32, i32* %v5
-    lw $k0, -20($sp)
-    lw $k0, 0($k0)
-    sw $k0, -24($sp)
-   # ret i32 %v6
-    lw $v0, -24($sp)
+   # %v5 = add i32 %a0, %a1
+    addu $v1, $a0, $a1
+   # ret i32 %v5
+    move $v0, $v1
     jr $ra
-setIndex:
-b7:
+calculate:
+b6:
    # %v8 = alloca i32*
-    li $k0, -40
-    addu $k0, $sp, $k0
-    sw $k0, -16($sp)
-   # store i32* %a0, i32** %v8
-    lw $k1, -16($sp)
-    sw $a0, 0($k1)
-   # %v12 = load i32*, i32** %v8
-    lw $k0, -16($sp)
-    lw $k0, 0($k0)
-    sw $k0, -20($sp)
-   # %v14 = getelementptr inbounds i32, i32* %v12, i32 %a1
-    lw $k0, -20($sp)
-    sll $k1, $a1, 2
-    addu $k0, $k0, $k1
-    sw $k0, -24($sp)
-   # %v15 = load i32, i32* %v14
-    lw $k0, -24($sp)
-    lw $k0, 0($k0)
-    sw $k0, -28($sp)
+    li $v1, -12
+    addu $v1, $sp, $v1
+   # store i32* %a1, i32** %v8
+    sw $a1, 0($v1)
+   # %v11 = load i32*, i32** %v8
+    lw $gp, 0($v1)
+   # %v12 = getelementptr inbounds i32, i32* %v11, i32 0
+    li $k1, 0
+    addu $gp, $gp, $k1
+   # %v13 = load i32, i32* %v12
+    lw $gp, 0($gp)
+   # %v14 = call i32 @add(i32  %a0, i32  %v13)
+    sw $gp, -16($sp)
+    sw $fp, -20($sp)
+    sw $v1, -24($sp)
+    sw $a1, -28($sp)
+    sw $a0, -32($sp)
+    sw $ra, -36($sp)
+    move $a1, $gp
+    li $k0, -36
+    addu $sp, $sp, $k0
+    jal add
+    lw $ra, 0($sp)
+    li $k0, 36
+    addu $sp, $sp, $k0
+    lw $gp, -16($sp)
+    lw $fp, -20($sp)
+    lw $v1, -24($sp)
+    lw $a1, -28($sp)
+    lw $a0, -32($sp)
+    move $gp, $v0
    # %v16 = load i32*, i32** %v8
-    lw $k0, -16($sp)
-    lw $k0, 0($k0)
-    sw $k0, -32($sp)
-   # %v18 = getelementptr inbounds i32, i32* %v16, i32 %a1
-    lw $k0, -32($sp)
-    sll $k1, $a1, 2
-    addu $k0, $k0, $k1
-    sw $k0, -36($sp)
-   # store i32 %a2, i32* %v18
-    lw $k1, -36($sp)
-    sw $a2, 0($k1)
-   # ret i32 %v15
-    lw $v0, -28($sp)
+    lw $fp, 0($v1)
+   # %v17 = getelementptr inbounds i32, i32* %v16, i32 1
+    li $k1, 4
+    addu $fp, $fp, $k1
+   # %v18 = load i32, i32* %v17
+    lw $fp, 0($fp)
+   # %v19 = sub i32 %a0, %v18
+    subu $fp, $a0, $fp
+   # %v20 = mul i32 %v14, %v19
+    mult $gp, $fp
+    mflo $gp
+   # %v21 = load i32*, i32** %v8
+    lw $v1, 0($v1)
+   # %v22 = getelementptr inbounds i32, i32* %v21, i32 2
+    li $k1, 8
+    addu $v1, $v1, $k1
+   # %v23 = load i32, i32* %v22
+    lw $v1, 0($v1)
+   # %v24 = sdiv i32 %v20, %v23
+    div $gp, $v1
+    mflo $v1
+   # %v26 = srem i32 %v24, %a0
+    div $v1, $a0
+    mfhi $v1
+    li $k0, 0
+    li $k1, 3
+   # %v27 = sub i32 0, 3
+    subu $gp, $k0, $k1
+    li $k0, 0
+   # %v28 = sub i32 0, %v27
+    subu $gp, $k0, $gp
+    li $k0, 0
+   # %v29 = sub i32 0, %v28
+    subu $gp, $k0, $gp
+   # %v30 = sub i32 %v26, %v29
+    subu $v1, $v1, $gp
+    li $k0, 0
+    li $k1, 6
+   # %v31 = sub i32 0, 6
+    subu $gp, $k0, $k1
+    li $k0, 0
+   # %v32 = sub i32 0, %v31
+    subu $gp, $k0, $gp
+   # %v33 = add i32 %v30, %v32
+    addu $v1, $v1, $gp
+   # %v38 = icmp sle i32 %v33, 5
+    li $k1, 5
+    sle $v1, $v1, $k1
+   # %v40 = icmp ne i32 %v39, 0
+    li $k1, 0
+    sne $v1, $v1, $k1
+   # br i1 %v40, label %b34, label %b35
+    beq $v1, $zero, b35
+    j b34
+b34:
+   # ret i32 1
+    li $v0, 1
+    jr $ra
+b35:
+   # ret i32 0
+    li $v0, 0
+    jr $ra
+printName:
+b42:
+   # %v43 = load i32, i32* @g_global_var
+    la $k0, g_global_var
+    lw $v1, 0($k0)
+    li $k1, 1
+   # %v44 = add i32 %v43, 1
+    addu $v1, $v1, $k1
+   # store i32 %v44, i32* @g_global_var
+    la $k1, g_global_var
+    sw $v1, 0($k1)
+   # %v47 = load i32, i32* @g_global_var
+    la $k0, g_global_var
+    lw $v1, 0($k0)
+   # %v48 = icmp ne i32 %v47, 0
+    li $k1, 0
+    sne $v1, $v1, $k1
+   # br i1 %v48, label %b45, label %b46
+    beq $v1, $zero, b46
+    j b45
+b45:
+   # %v49 = getelementptr inbounds [10 x i8], [10 x i8]* @str.0, i32 0, i32 0
+    la $k0, str.0
+    li $k1, 0
+    addu $v1, $k0, $k1
+   # call void @putstr(i8*  %v49)
+    move $k1, $a0
+    move $a0, $v1
+    li $v0, 4
+    syscall
+    move $a0, $k1
+   # br label %b46
+    j b46
+b46:
+   # ret void
+    jr $ra
+print:
+b50:
+   # %v53 = zext i8 %a0 to i32
+    move $v1, $a0
+   # call void @putch(i8  %v54)
+    move $k1, $a0
+    move $a0, $v1
+    li $v0, 11
+    syscall
+    move $a0, $k1
+   # %v55 = getelementptr inbounds [2 x i8], [2 x i8]* @str.1, i32 0, i32 0
+    la $k0, str.1
+    li $k1, 0
+    addu $v1, $k0, $k1
+   # call void @putstr(i8*  %v55)
+    move $k1, $a0
+    move $a0, $v1
+    li $v0, 4
+    syscall
+    move $a0, $k1
+   # ret void
+    jr $ra
+get_first:
+b56:
+   # %v57 = alloca i8*
+    li $v1, -8
+    addu $v1, $sp, $v1
+   # store i8* %a0, i8** %v57
+    sw $a0, 0($v1)
+   # %v58 = load i8*, i8** %v57
+    lw $v1, 0($v1)
+   # %v59 = getelementptr inbounds i8, i8* %v58, i32 0
+    li $k1, 0
+    addu $v1, $v1, $k1
+   # %v60 = load i8, i8* %v59
+    lb $v1, 0($v1)
+   # ret i8 %v62
+    move $v0, $v1
     jr $ra
 
 

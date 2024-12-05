@@ -47,8 +47,9 @@ public class RemovePhi {
                 continue;
             }
             // 构造可以并行的copy指令序列
-            ArrayList<Copy> pCopyList = getParallelCopyList(copyList, curBb);
-            // todo 寄存器分配之后，可能会存在寄存器共用的问题，之后再搞
+            ArrayList<Copy> fakePCopyList = getParallelCopyList(copyList, curBb);
+            // 寄存器分配之后，可能会存在寄存器共用的问题
+            ArrayList<Copy> pCopyList = tackleRegError(fakePCopyList, curBb, value2reg);
             // 开始将copy指令插入进去，对于有多个后继的块，需要构造一个中间块
             if (frontBb.backBbs.size() < 2) {
                 for (Copy copy : pCopyList) {
@@ -102,6 +103,31 @@ public class RemovePhi {
             outCopyList.addLast(iCopy);
         }
         return new ArrayList<>(outCopyList);
+    }
+    
+    private static ArrayList<Copy> tackleRegError(ArrayList<Copy> fakePCopyList, BasicBlock curBb, HashMap<Value, Reg> value2reg) {
+        ArrayList<Copy> pCopyList = new ArrayList<>();
+        for (int i = 0; i < fakePCopyList.size(); i+=1) {
+            Copy iCopy = fakePCopyList.get(i);
+            for (int j = i + 1; j < fakePCopyList.size(); j+=1) {
+                Copy jCopy = fakePCopyList.get(j);
+                if (value2reg.containsKey(iCopy.getTarget()) && value2reg.containsKey(jCopy.getFrom()) &&
+                        value2reg.get(iCopy.getTarget())  == value2reg.get(jCopy.getFrom())) {
+                    
+                    Value middleValue = IrFactory.makeMiddleValue(iCopy.getTarget().getType());
+                    Copy middleCopy = new Copy(curBb, middleValue, iCopy.getTarget());
+                    pCopyList.add(0, middleCopy);
+                    for (int k = j; k < fakePCopyList.size(); k+=1) {
+                        Copy kCopy = fakePCopyList.get(k);
+                        if (value2reg.containsKey(kCopy.getFrom()) && value2reg.get(iCopy.getTarget())  == value2reg.get(kCopy.getFrom())) {
+                            kCopy.setFrom(middleValue);
+                        }
+                    }
+                }
+            }
+            pCopyList.add(iCopy);
+        }
+        return pCopyList;
     }
     
     

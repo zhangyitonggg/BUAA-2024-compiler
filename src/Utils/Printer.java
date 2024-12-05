@@ -13,7 +13,8 @@ public class Printer {
     private final static String llvmFileName = "llvm_ir.txt";
     private final static String llvmNoOptFileName = "llvm_ir_no_opt.txt";
     private final static String llvmOptFileName = "llvm_ir_opt.txt";
-    public static String mipsFileName = "mips.txt";
+    private static String mipsFileName = "mips.txt";
+    private static String mipsNoOptFileName = "mips_no_opt.txt";
     
     private static void print2file(String fileName, String output) {
         try (FileWriter writer = new FileWriter(fileName)) {
@@ -52,6 +53,10 @@ public class Printer {
     
     public static void print2mips(String output) {
         print2file(mipsFileName, output);
+    }
+    
+    public static void print2mipsNoOpt(String output) {
+        print2file(mipsNoOptFileName, output);
     }
 
     public static String ST(TokenType tokenType) {
