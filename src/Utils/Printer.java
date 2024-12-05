@@ -39,11 +39,14 @@ public class Printer {
     }
     
     public static void print2llvm(String output) {
+        print2file(llvmFileName, output);
+    }
+    
+    public static void print2llvmNoOpt(String output) {
         print2file(llvmNoOptFileName, output);
     }
     
     public static void print2llvmOpt(String output) {
-        print2file(llvmFileName, output);
         print2file(llvmOptFileName, output);
     }
     

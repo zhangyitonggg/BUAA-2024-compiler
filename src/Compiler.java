@@ -40,7 +40,7 @@ public class Compiler {
         }
         // 生成中间代码
         module = Visitor.getInstance().visit(compUnit);
-        Printer.print2llvm(module.toString());
+        Printer.print2llvmNoOpt(module.toString());
         if (Config.optimizeFlag) {
             Pre.deleteDeadCode(module);
             Pre.anaDom(module);

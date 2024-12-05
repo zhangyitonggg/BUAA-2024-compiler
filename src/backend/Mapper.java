@@ -439,7 +439,10 @@ public class Mapper extends MipsFactory {
             makeLi(indexReg, indexValueConst.getValue() * tmp);
         } else if (findReg(indexValue) != null) {
             if (tmp == 4) {
+                // 这时候indexReg还是一个保持是k1
                 makeSll(indexReg, findReg(indexValue), 2);
+            } else {
+                indexReg = findReg(indexValue);
             }
         } else {
             // 必然是I32
