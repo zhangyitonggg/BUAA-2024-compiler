@@ -1,0 +1,10 @@
+22373141
+Function with no parameters
+Function with parameters: a = 15, b = A
+Result of functionWithParams: 80
+Function returning a character
+Character returned: C
+Function with single parameter, x = 15
+Result of functionSingleParam: 8
+Input integer: 240610
+Input character: w

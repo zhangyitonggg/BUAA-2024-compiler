@@ -1,0 +1,26 @@
+//testfile1:复杂条件运算与判断，短路求值
+int global = 0;
+int func_cond() {
+    global=global+1;
+    return global;
+}
+void test_if() {
+    if (0 && func_cond()) { ; }
+    if (1 || func_cond()) { ; }
+    if (1 && func_cond() && 0 && func_cond()) { ; }
+    if (0 || !func_cond() || 1 || !func_cond()) { ; }
+    if (0 && func_cond() || func_cond() && 1) { ; }
+    if (0 || !func_cond() && func_cond() && 1) { ; }
+    if (0 && func_cond() || func_cond()) { ; }
+    if (!func_cond() || 1 && func_cond()) { ; }
+    if (1 == func_cond()) { ; }
+    if (1 != func_cond()) { ; }
+}
+
+int main() {
+    printf("21376218\n");
+    test_if();
+    printf("%d\n", global);
+    printf("Finish test1\n");
+    return 0;
+}

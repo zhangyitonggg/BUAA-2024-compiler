@@ -1,0 +1,5 @@
+{
+    "type":"dump",
+    "score_rule":"deduct_per_line",
+    "score_per_line":"10"
+}

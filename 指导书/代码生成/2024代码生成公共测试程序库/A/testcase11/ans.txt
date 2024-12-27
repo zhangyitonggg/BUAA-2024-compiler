@@ -1,0 +1,9 @@
+22371236
+test_stmt_getint_getchar_printfsuccess
+test_Eqexp success!
+test_Lval_exp success!
+test_add_exp_success!
+test_mul_exp success!
+test_primary_exp success!
+test_rel_exp success!
+test_unary_exp success!

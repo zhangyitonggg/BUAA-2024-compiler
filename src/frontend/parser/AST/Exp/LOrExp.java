@@ -1,0 +1,36 @@
+package frontend.parser.AST.Exp;
+
+import frontend.lexer.Token;
+import frontend.parser.AnyNode;
+
+import java.util.ArrayList;
+
+// 逻辑或表达式 LOrExp → LAndExp | LOrExp '||' LAndExp
+// 改写为： LOrExp → LAndExp {|| LAndExp}
+public class LOrExp implements AnyNode {
+    private ArrayList<Object> nodes;
+    
+    public LOrExp(ArrayList<Object> nodes) {
+        this.nodes = nodes;
+    }
+    
+    public ArrayList<Object> getNodes() {
+        return nodes;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        LAndExp lAndExp = (LAndExp) nodes.get(0);
+        sb.append(lAndExp.toString());
+        sb.append("<LOrExp>\n");
+        for (int i = 1; i < nodes.size(); i += 2) {
+            Token token = (Token) nodes.get(i);
+            lAndExp = (LAndExp) nodes.get(i + 1);
+            sb.append(token.toString());
+            sb.append(lAndExp.toString());
+            sb.append("<LOrExp>\n");
+        }
+        return sb.toString();
+    }
+}

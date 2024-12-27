@@ -1,0 +1,131 @@
+int ig1;
+int fuc1(){
+	return 1;
+}
+char fuc2(){
+	return 'a';
+}
+void fuc3(){
+	return;
+}
+int fuc4(int a){
+	return 1;
+}
+int fuc5(int a,int b){
+	return 1;
+}
+int fuc6(int a,int b[]){
+	return 1;
+}
+int main(){
+	const int i1=1;
+	const int i2=1,i3=1;
+	const int ia1[5]={1,2,3,4,5};
+	const int ia2[3]={1,2,3},i4=2;
+
+	const char c1='a';
+	const char c2='a',c3='b';
+	const char ca2[5]="abcd";
+	const char ca3[5]="abcd",c4='a';
+
+	int i5;
+	int i6,i7;
+	int ia3[5];
+	int i8=1;
+	int ia4[5]={1,2,3,4,5};
+	
+	char c5;
+	char c6='a';
+	char c7,c8='a';
+	char ca4[5];
+	char ca5[5]="abcd";
+
+	printf("22371144\n");
+	{
+		
+	}
+	int testio1=0;
+	char testio2=0;
+	testio1=getint();
+	testio2=getchar();
+	int tmp1=1+2+3;
+	int tmp2=1*2+2*1;
+	int tmp3=1+1*2+1;
+	int tmp4=3*(1+2);
+	printf("%d %d %d %d\n",tmp1,tmp2,tmp3,tmp4);
+	int t1=1,t2=1,t3=1;
+	tmp1=t1+t2-t3;
+	tmp2=t1*t2+t3;
+	tmp3=t3+t1*t2;
+	printf("%d %d %d %d\n",tmp1,tmp2,tmp3,tmp4);
+	tmp1=t1%4+1;
+	tmp2=t1/1+0;
+	tmp3=t1*t2/t3;
+	tmp4=t1*(t2+t3);
+	printf("%d %d %d %d\n",tmp1,tmp2,tmp3,tmp4);
+	tmp1=+tmp1;
+	tmp1=fuc4(tmp2);
+	tmp1=fuc5(tmp1,tmp2);
+	tmp1=fuc1();
+	tmp1=-tmp1;
+	tmp1=-tmp1;
+	ia4[0]=1;
+	if(t1==1){}
+	if(t2==0){
+	}else{
+	}
+	for(tmp1=1;tmp1<10;tmp1=tmp1+1){
+	}
+	
+	tmp1=1;
+	for(;tmp1<10;tmp1=tmp1+1){
+	}
+	
+	tmp1=1;
+	for(tmp1=1;;tmp1=tmp1+1){
+		if(tmp1==10){
+			break;
+		}
+	}
+	
+	tmp1=1;
+	for(;tmp1<10;tmp1=tmp1+1){	
+	}
+	
+	tmp1=1;
+	for(;tmp1<10;){	
+		tmp1=tmp1+1;
+	}
+	
+	tmp1=1;
+	for(tmp1=1;;){	
+		tmp1=tmp1+1;
+		if(tmp1==10){
+			break;
+		}else{
+			continue;
+		}
+	}
+	
+	tmp1=1;
+	for(;;tmp1=tmp1+1){	
+		if(tmp1==10){
+			break;
+		}
+	}
+	
+	tmp1=1;
+	for(;;){	
+		tmp1=tmp1+1;
+		if(tmp1==10){
+			break;
+		}
+	}
+	tmp1=1;
+	for(tmp1=1;tmp1<10;){	
+		tmp1=tmp1+1;
+	}
+	tmp1+tmp2;
+	return 0;
+}
+

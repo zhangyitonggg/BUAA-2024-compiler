@@ -1,0 +1,133 @@
+
+const int constA = 1;
+const int constB = 2, constC = 1 + 2;
+const int constD[5] = {1, 2, 3, 4, 5};
+char a1 = 'a';
+char a2 = 'b', a3 = 'c';
+char a4[6] = "abcde";
+
+void funcA()
+{
+}
+
+int funcB()
+{
+    int tmp = 0, a = 0;
+
+    for (a = 0; a < 5; a = a + 1)
+        tmp = tmp + a;
+
+    printf("%d\n", tmp);
+
+    a = 0;
+    for (; a < 5; a = a + 1)
+        tmp = tmp + a;
+
+    for (a = 0;; a = a + 1)
+    {
+        tmp = tmp + a;
+        if (tmp > 25)
+            break;
+        else
+            continue;
+    }
+
+    for (a = 1; a < 5;)
+    {
+        tmp = tmp + a;
+        if (tmp > 30)
+            break;
+    }
+
+    printf("%d\n", tmp);
+
+    a = 0;
+    for (;; a = a + 1)
+    {
+        tmp = tmp + a;
+        if (tmp > 35)
+            break;
+    }
+
+    for (; a < 5;)
+    {
+        tmp = tmp + 1;
+        if (tmp > 40)
+            break;
+    }
+
+    for (a = 1;;)
+    {
+        tmp = tmp + a;
+        if (tmp > 45)
+            break;
+    }
+
+    printf("%d\n", tmp);
+
+    for (;;)
+    {
+        tmp = tmp + 2;
+        if (tmp > 50)
+            break;
+    }
+
+    printf("%d\n", tmp);
+
+    return tmp;
+}
+
+char funcC()
+{
+    char a = '\0';
+    ;
+    1;
+    if (constB >= constA + 1)
+    {
+        if (constC >= constB + 1)
+            a = a1;
+    }
+    else
+    {
+        a = a2;
+    }
+    if (constC != 3)
+    {
+        if (constB < 3)
+            a = a3;
+    }
+    return a;
+}
+
+void funcD(char s[])
+{
+    printf("%c\n", s[0]);
+    return;
+}
+
+void funcE(int a, int b)
+{
+    if (a == b)
+        printf("%d\n", a + b);
+    if (a != b)
+        printf("%d\n", a * b);
+}
+
+int main()
+{
+    printf("22372468\n");
+    int a = 0;
+    char b = '\0';
+    a = getint();
+    b = getchar();
+    printf("%d %c\n", a, b);
+    funcA();
+    int c = (a * 10 + funcB() / 2 - 1) % 7;
+    char d = funcC();
+    printf("%d %c\n", c, d);
+    a4[0] = 'z';
+    funcD(a4);
+    funcE(constA, constB);
+    funcE(constA, constB);
+    return 0;
+}

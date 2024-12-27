@@ -1,0 +1,10 @@
+char func3()
+{
+    return 'a';
+}
+
+int main()
+{
+    printf("%c", func3());
+    return 0;
+}

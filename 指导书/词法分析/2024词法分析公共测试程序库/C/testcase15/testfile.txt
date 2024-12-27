@@ -1,0 +1,68 @@
+// Global declarations covering ConstDecl and VarDecl
+
+const int constInt = 10; // ConstDecl with single ConstDef, BType 'int', with initialization
+const char constCharA = 'A', constCharB = 'B'; // ConstDecl with multiple ConstDef, BType 'char', with initialization
+
+int varInt; // VarDecl with VarDef without init
+int varIntB = 5, varIntC = 15; // VarDecl with multiple VarDef with init
+char varChar; // VarDecl with VarDef without init
+
+// Function definitions covering FuncDef with different FuncType and parameters
+
+// Function with no parameters
+void functionNoParam() {
+    printf("Function with no parameters\n"); // 2nd printf
+    return; // 'return' without Exp
+}
+
+// Function with a single formal parameter
+int functionSingleParam(int x) {
+    printf("Function with single parameter, x = %d\n", x); // 3rd printf
+    return x - x + 8; // Return expression
+}
+
+// Function with multiple parameters
+int functionWithParams(int a, char b) {
+    printf("Function with parameters: a = %d, b = %c\n", a, b); // 4th printf
+    return a + b; // Return expression
+}
+
+// Function returning a character
+char functionReturnChar() {
+    printf("Function returning a character\n"); // 5th printf
+    return 'C'; // Return character constant
+}
+
+int main() {
+    printf("22373141\n"); // 1st printf (Replace with your actual student ID)
+
+    int a = constInt + varIntB; // Using constants and variables in expressions
+    varInt = a * varIntC; // Assignment using variables and constants
+
+    varChar = constCharA; // Assigning char constant to variable
+
+    ; // Expression statement without Exp
+    (a + varInt); // Expression statement with Exp, result discarded
+
+    functionNoParam(); // Function call without parameters
+
+    int result = functionWithParams(a, varChar); // Function call with parameters
+    printf("Result of functionWithParams: %d\n", result); // 6th printf
+
+    char ch = functionReturnChar(); // Function returning char
+    printf("Character returned: %c\n", ch); // 7th printf
+
+    int singleResult = functionSingleParam(a); // Function call with single actual parameter
+    printf("Result of functionSingleParam: %d\n", singleResult); // 8th printf
+
+    int inputInt;
+    inputInt = getint(); // Using LVal = getint();
+    printf("Input integer: %d\n", inputInt); // 9th printf
+
+    char inputChar;
+    inputChar = getchar(); // Using LVal = getchar();
+    printf("Input character: %c\n", inputChar); // 10th printf
+
+    // 'return' with Exp in 'main' function
+    return 0;
+}

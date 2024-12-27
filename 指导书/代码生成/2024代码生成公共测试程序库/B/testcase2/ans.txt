@@ -1,0 +1,10 @@
+22373141
+Negative intArray[0]: -10
+Positive intArray[0]: -10
+Quotient: 1, Remainder: 0
+Sum of ASCII codes1: 79 O
+Function with parameters: a = -10, b = O arr[0] = -10, str[0] = O
+Sum in func_with_param: 138
+Sum of ASCII codes2: 294 &
+x1 = 107
+a1 = 41, as char: )

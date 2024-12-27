@@ -1,0 +1,10 @@
+22230605
+num1 is greater than num2.
+num1 is less than num2.
+num1 is equal to num2.
+The letter is c
+end
+end
+end
+end
+end

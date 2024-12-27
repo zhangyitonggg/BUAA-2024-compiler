@@ -1,0 +1,10 @@
+22373040
+Input integer: 5
+Input character: s
+i is 4 or 9!
+j is 32!
+i is 4 or 9!
+j is 32!
+Sum of array elements: 6
+q
+Test finished!
